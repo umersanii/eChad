@@ -52,20 +52,21 @@ gifs = ["https://media.giphy.com/media/YlRpYzrkHbtSYDAlaE/giphy.gif","https://me
 
 
 async def sendmessage(message, lent, msg):
-        cmessage = re.sub(r'<@\d+>', '', message.content.lower())
-        if(len(cmessage))>lent:
-            # for emoji in moji:
-            #     if f'<:{emoji}:' in message.content:
-            #         print("moji detected")
-            # else:
-            #     await message.channel.send(msg, reference=message)
-            pattern = '|'.join(re.escape(emoji) for emoji in moji)
-            x = re.sub(pattern, '', message.content)
-            x = x.replace(':',  '')
-            x = x.replace ('<','')
-            x = x.replace ('>', '')
-            await message.channel.send(x, reference=message)
+        if(len(message))>lent:
+            for emoji in moji:
+                if f'<:{emoji}:' in message.content:
+                    print("moji detected")
+            else:
+                await message.channel.send(msg, reference=message)
+            
 
+async def cleanMsg(message):
+    pattern = '|'.join(re.escape(emoji) for emoji in moji)
+    x = re.sub(pattern, '', message.content)
+    x = x.replace(':',  '')
+    x = x.replace ('<','')
+    x = x.replace ('>', '')
+    message.content = x
                 
 async def sendfile(message,lent,filen):
     cmessage = re.sub(r'<@\d+>', '', message.content.lower())
@@ -73,17 +74,7 @@ async def sendfile(message,lent,filen):
         await message.channel.send("** **", reference = message)
         await message.channel.send(file=discord.File(filen))
         
-async def cleanmsg(message):
-    try:
-        cmessage = re.sub(r'<@\d+>', '', message.content.lower())
-    except:
-        pass
-    
-    if any(s in cmessage for s in moji):
-        for s in moji:
-            cmessage = cmessage.replace(s,"")
-            
-    return cmessage
+
     
 
 async def insult(message):
@@ -115,6 +106,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message: discord.Message):
+
+    cleanMsg(message.content)
     if message.author == client.user:
         return
     
@@ -135,9 +128,6 @@ async def on_message(message: discord.Message):
     
     
     x = random.randint(10,30)
-    cmessage = await cleanmsg(message)
-    
-
 
     if f'<@{echad}>' in message.content:
         print('u called?')
@@ -164,7 +154,7 @@ async def on_message(message: discord.Message):
     if message.author == user:
         if not message.attachments:
             s = random.randint(1, 6)
-            if 'a' or 'b' or 'c'  in cmessage:
+            if 'a' or 'b' or 'c'  in message.content:
                 if s!=3:
                     try:
                         await message.add_reaction('🅾️')
@@ -199,7 +189,7 @@ async def on_message(message: discord.Message):
             # elif 'care' in cmessage:
                 # sendfile(meesage, 1, "wedo.mp4")
                 
-            if 'a' or 'b' or 'c'  in cmessage:                   
+            if 'a' or 'b' or 'c'  in message.content:                   
                     if s==1:
                         await sendmessage(message, 12, random.choice(garvasked))
                         return
@@ -255,7 +245,7 @@ async def on_message(message: discord.Message):
         pass
     else:
         await insult(message)
-        if "🖕" in cmessage:
+        if "🖕" in message.content:
             await sendmessage(message, 1, "Is it your wish to obtain it? I have procured one in a variety of hues. 🖕🏿 🖕 🖕🏻 ")
         if not message.attachments:
             if x==11:
@@ -389,4 +379,4 @@ async def on_member_remove(member):
  
  
  
-client.run()
+client.run("MTA2NzgwOTAwNTU5MTg1OTM2MA.GzrGkR.TO12jmCU23EADjFeMk3T8dpn79OJkWa9ytJoZ0")
