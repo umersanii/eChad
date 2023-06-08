@@ -314,9 +314,6 @@ async def on_message(message: discord.Message):
             await sendfile(message, 1, "rajpal.mp4")
             
 
-
-
-
 @client.event
 async def on_message_delete(message):
     mem = message.author.id
@@ -343,8 +340,16 @@ async def on_message_delete(message):
     elif mem == message.author.bot:
      pass
     else:
-        await message.channel.send('\n<@'+str(mem)+'>' + "\n"+ random.choice(msgdel) + "\n\n")
-        await message.channel.send(message.author.name + " was saying : " + "*"+message.content+"*")
+        
+        await message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
+        embed = discord.Embed(
+        title=message.author.nick + "'s Deleted Message",
+        description= message.content,
+        color=discord.Color.red()
+    )
+
+    await message.channel.send(embed=embed)
+
 
 @client.event
 async def on_message_edit(b4message,afmessage):
@@ -382,8 +387,16 @@ async def on_message_edit(b4message,afmessage):
                 pass
             else:
                 
-                await b4message.channel.send('\n<@'+str(mem)+'>' + "\n"+ random.choice(msgdel) + "\n\n" + afmessage.author.name + 
-                " edited his message from : " + "*" +b4message.content + "*\n" + " to " + "\n**"+afmessage.content+"**")
+                await b4message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
+                embed2 = discord.Embed(
+                title=b4message.author.nick + "'s Edited Message",
+                description= "",
+                color=discord.Color.red())
+                
+                embed2.add_field(name='Original Message', value=b4message.content, inline=False)
+                embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
+
+            await b4message.channel.send(embed=embed2)
 
 @client.event
 async def on_member_join(member):
