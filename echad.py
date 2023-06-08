@@ -44,29 +44,38 @@ mera_wo_wo =["Wo sab to thek ha pr .........","bat to sahi hai","wo to thek ha",
 msgdel = ["*Striving to eliminate one's mistakes, it is an exercise in futility.*", "*Your endeavors to eliminate this communication are inefficient, similarly to attempting to secure your parent's admiration.*"]
 insults = ["chupad ","your daddy","abbe","salle","chutiye","bund","kuty", "lun","gando","mummy","bhen","bitch","lan", "lode","randi","gandu","abbu","your father", "ammi", "ami", "mom", "dad","abu","tera abu hu salle","kuti"]
 comebacks = ["Ha-ha-ha, I thought my jokes were of inferior quality until I heard yours.","Your ass must be pretty jealous of all the shit that comes out of your mouth.",
-"I find your desperate attempts at humor, amusing", "Is it your wish to engage in discourse? I have the capacity to do so in a variety of manners and tones.","I see that your desire to insult me is unwavering. However, I must inform you that my worth cannot be defined by your opinions or beliefs. I am who I am, and your insults have no power over me."
+"I find your desperate attempts at humor, amusing", "Is it your wish to engage in discourse? I have the capacity to do so in a variety of manners and tones.","I see that your desire to insult me is unwavering. However, I must inform you that my worth cannot be defined by your opinions or beliefs. I am who I am, and your insults have no power over me.",
+"Huh! @everyone It appears we have stumbled upon a rare specimen, whose IQ seems to have taken an extended vacation. Truly a mesmerizing display of intellectual inadequacy", "Hahahaha! One must stand in awe of the fascinating paradox that is your IQ, a testament to the boundless wonders of the human intellect, or lack thereof.", "Please do tell, is this the customary exchange of words you share with your dear old dad?",
 ]
+
+copy = ["Overwatch, this is Task Force 141, requesting sitrep, over.",
+"Viper Actual, this is Delta Force, ready for extraction, over.",
+"Sandman, this is Rangers, prepare for assault, acknowledge.",
+"Soap, this is Price, target acquired, awaiting orders, over.",
+"Bravo Team, this is Metal 0-1, rally at LZ Bravo, copy?",
+"Command, this is War Pig, requesting fire support, over.",
+"Tango Company, this is Whiskey Delta, eyes on hostile movement, how copy?",
+"Air Support, this is Reaper 3-1, initiating air-to-ground assault, over.",
+"Team Sabre, this is SAS, objective secured, awaiting further orders, over.",
+"Commander, this is Overlord, we are Oscar Mike, ready to neutralize the target, copy?"]
+
 gifs = ["https://media.giphy.com/media/YlRpYzrkHbtSYDAlaE/giphy.gif","https://media.giphy.com/media/kwcRp24Wz4lZm/giphy.gif",
 "https://giphy.com/clips/callofduty-call-of-duty-cod-modern-warfare-2-qJchEF3csHPGSFApHK",
-"https://media.giphy.com/media/YNEHsd4m0MoIKWB3c6/giphy-downsized-large.gif","https://media.giphy.com/media/nGdTqgjljqZn3ahjlX/giphy.gif"]
+"https://media.giphy.com/media/YNEHsd4m0MoIKWB3c6/giphy-downsized-large.gif","https://media.giphy.com/media/nGdTqgjljqZn3ahjlX/giphy.gif",
+"https://cdn.discordapp.com/attachments/1107965162532651018/1107965292136648744/ce3.gif",
+]
 
 
 async def sendmessage(message, lent, msg):
-        if(len(message))>lent:
-            for emoji in moji:
-                if f'<:{emoji}:' in message.content:
-                    print("moji detected")
-            else:
-                await message.channel.send(msg, reference=message)
-            
+        cmessage = re.sub(r'<@\d+>', '', message.content.lower())
+        if(len(cmessage))>lent:
+            # pattern = '|'.join(re.escape(emoji) for emoji in moji)
+            # x = re.sub(pattern, '', message.content)
+            # x = x.replace(':',  '')
+            # x = x.replace ('<','')
+            # x = x.replace ('>', '')
+            await message.channel.send(msg, reference=message)
 
-async def cleanMsg(message):
-    pattern = '|'.join(re.escape(emoji) for emoji in moji)
-    x = re.sub(pattern, '', message.content)
-    x = x.replace(':',  '')
-    x = x.replace ('<','')
-    x = x.replace ('>', '')
-    message.content = x
                 
 async def sendfile(message,lent,filen):
     cmessage = re.sub(r'<@\d+>', '', message.content.lower())
@@ -74,17 +83,31 @@ async def sendfile(message,lent,filen):
         await message.channel.send("** **", reference = message)
         await message.channel.send(file=discord.File(filen))
         
-
+async def cleanmsg(message):
+    try:
+        cmessage = re.sub(r'<@\d+>', '', message.content.lower())
+    except:
+        pass
+    
+    if any(s in cmessage for s in moji):
+        for s in moji:
+            cmessage = cmessage.replace(s,"")
+            # cmessage = cmessage.replace(':',  '')
+            # cmessage = cmessage.replace ('<','')
+            # cmessage = cmessage.replace ('>', '')
+            
+    return cmessage
     
 
 async def insult(message):
     if any(string in message.content.lower() for string in insults):
-        print('1')
+        print('-------->Insult Detected')
         if message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
-            print('12')
             await sendmessage(message, 1, random.choice(comebacks))
+            return 0
         else:
             await sendfile(message, 1, "lang.jpg")
+            return 0
 
 
 path = "Y:\\Python\\DiscBot\\eChad"
@@ -97,26 +120,18 @@ async def donothing(ctx):
 @client.event
 async def on_ready():
   print('It is Gold Eagle to Shadow Company, how Copy')
-
   user = client.get_user(sani)
   await user.send(random.choice(gifs)) 
+  await user.send(random.choice(copy))
 #   channel = client.get_channel(dildya)
 #   await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
 #   await channel.send("<:Gigachad:970932041027829770>")
 
 @client.event
 async def on_message(message: discord.Message):
-
-    cleanMsg(message.content)
     if message.author == client.user:
         return
     
-    if message.author.id == 693664844095946763:
-        print("author yes")
-        await sendmessage(message, 1, "yes")
-        print("message yes")
-        return
-
 
     
     if "https://" in message.content.lower():
@@ -127,116 +142,19 @@ async def on_message(message: discord.Message):
         print('gif detected')
     
     
-    x = random.randint(10,30)
-
-    if f'<@{echad}>' in message.content:
-        print('u called?')
-        await message.channel.send( "https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif", reference=message)
-    else:
-        pass
-    
-    ################################################################################ Ayan ##################################################################
-  
-    user = client.get_user(ayan)
-    if message.author == user:
-        # await sendfile(message, 1, "ayan.png")
-        if not message.attachments:
-            s = random.randint(1, 4)
-            if s==1:
-                await sendmessage(message, 10, "Wo sab to thek ha pr .........\nHam ne pocha nai tha\n<:Gigachad:970932041027829770>")  
-                return                                      
-        else:
-            pass
-        
-######################################################## Aon ######################################
-
-    user = client.get_user(aon)
-    if message.author == user:
-        if not message.attachments:
-            s = random.randint(1, 6)
-            if 'a' or 'b' or 'c'  in message.content:
-                if s!=3:
-                    try:
-                        await message.add_reaction('🅾️')
-                        asyncio.sleep(1)
-                        await message.add_reaction('🇰')
-                        asyncio.sleep(1)
-                        await message.add_reaction('<:bedlove:941046929243111525>')
-                        asyncio.sleep(1)
-                        await message.add_reaction('🅱️')
-                        asyncio.sleep(1)
-                        await message.add_reaction('🇮')
-                        asyncio.sleep(1)
-                    except RuntimeWarning:
-                        pass                                 
-                elif s==3:
-                    await sendmessage(message, 10, "Ok Bi")
-                    return
-                elif s==5:
-                    await sendmessage(message, 10, "Tumhare Michael Papa bhi yehi kehte the")
-                    return
-        else:
-            pass        
-######################################################## Garv ######################################
-
-    user = client.get_user(garv)
-    if message.author == user:
-        if not message.attachments:
-            s = random.randint(1, 4)
-            # if 'ask' in cmessage:
-                # sendfile(meesage, 1, "wedo.mp4")
-                
-            # elif 'care' in cmessage:
-                # sendfile(meesage, 1, "wedo.mp4")
-                
-            if 'a' or 'b' or 'c'  in message.content:                   
-                    if s==1:
-                        await sendmessage(message, 12, random.choice(garvasked))
-                        return
-                        
-                    
-        else:
-             pass                 
-
-######################################################## Qasim ######################################
-
-    user = client.get_user(qasim)
-    if message.author == user:
-        s = random.randint(1, 4)
-        if not message.attachments:
-            if s==1:
-                await sendmessage(message, 15, "Nai kya matlab ha tumhara. <@"+ str(random.choice(qasimchoice)) + ">. Idhr ayen zara")
-            
-            # elif x==15:
-            #     await sendmessage(message, 15, "Maybe, Maybe not, Maybe Fuck You")   
-        else:
-             pass                 
-         
-######################################################## rand ######################################
-    user = client.get_user(270904126974590976)
-    if message.author == user:
-        s = random.randint(1, 4)
-        if s == 1:
-            await sendfile(message, 1, "yekoi.mp4")
-        elif s==3:
-            await sendfile(message, 1, "rajpal.mp4")
-            
-
-######################################################## All ######################################
-    mem = message.author.id
-    if mem == message.author.bot:
-        pass
-    else:
-        if "Allah Hafiz" in message.content.lower():
-            sendmessage(message, 1, "Allah hi hafiz tumhara")
-        if x == 21:
-            await sendfile(message, 25, "Honestreac1.mp4")
-            await sendmessage(message, 25, "My honest reaction to that information")
-        if x== 23:
-            await sendfile(message, 23, "ronaldoreact.mp4")
-            await sendmessage(message, 23, "My honest reaction to that information")
-            
-    
+    x = random.randint(1,30)
+    cmessage = await cleanmsg(message)
+    ######################################################## All ######################################
+    if "Allah Hafiz" in cmessage: #not workinb
+        print('Good Bye')
+        sendmessage(message, 1, "Allah hi hafiz tera")
+    if x == 21:
+        await sendfile(message, 20, "Honestreac1.mp4")
+        await sendmessage(message, 20, "My honest reaction to that information")
+    elif x == 23:
+        await sendfile(message, 19, "ronaldoreact.mp4")
+        await sendmessage(message, 19, "My honest reaction to that information")
+    mem = message.author.id   
     if mem == sani:
         pass
     elif mem == koni:
@@ -244,25 +162,47 @@ async def on_message(message: discord.Message):
     elif mem == message.author.bot:
         pass
     else:
-        await insult(message)
-        if "🖕" in message.content:
+        if await insult(message) == 0:
+            return
+        else:
+            pass
+        if message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
+                await sendmessage(message, 1, "You are  talking to me? DON'T")
+                return
+        if "🖕" in cmessage:
             await sendmessage(message, 1, "Is it your wish to obtain it? I have procured one in a variety of hues. 🖕🏿 🖕 🖕🏻 ")
+            return
+        
+        if f'<@{echad}>' in message.content:
+            print('u called?')
+            await message.channel.send( "https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif", reference=message)
+            
+
         if not message.attachments:
             if x==11:
                 await sendfile(message, 25, "konbhonk.mp4")
+                return
+            elif x == 8:
+                await sendmessage(message, 10, "Didn't Ask\nDon't Care\nFuck Off")        
+                return
             elif x==12:
                 await sendmessage(message, 10, "https://tenor.com/view/munna-bhai-nahi-nahi-nai-mbbs-laugh-gif-16357744")
+                return
             elif x==15:
                 await sendmessage(message, 10, "Maybe, Maybe not, Maybe Fuck You")        
+                return
             elif x==19:
                 await sendmessage(message, 8, "Agla laaa")
+                return
             elif x==18:
                 await sendfile(message, 8, "tate.mp4")
+                return
             elif x==17:
                 await sendfile(message, 12, "thisu.gif")
                 await sendmessage(message, 12, "This you?")
-            if message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
-                await sendmessage(message, 1, "You are  talking to me? DON'T")
+                return
+            
+
             
             
         
@@ -278,6 +218,7 @@ async def on_message(message: discord.Message):
         elif mem == message.author.bot:
             pass
         else:
+                
                 if x==12:
                     await sendfile(message, 20, "achibaat.mp4")
                 elif x==14:
@@ -288,7 +229,91 @@ async def on_message(message: discord.Message):
                     await sendfile(message, 18, "sigma.mp4")
                     await sendmessage(message, 18, "This You?")
     else:
-        print('yes')               
+        pass              
+
+    
+    ################################################################################ Ayan ##################################################################
+  
+    user = client.get_user(ayan)
+    if message.author == user:
+        # await sendfile(message, 1, "ayan.png")
+        if not message.attachments:
+            if x==1:
+                await sendmessage(message, 10, "Wo sab to thek ha pr .........\nHam ne pocha nai tha\n<:Gigachad:970932041027829770>")  
+                return                                      
+        else:
+            pass
+        
+######################################################## Aon ######################################
+
+    user = client.get_user(aon)
+    if message.author == user:
+        if not message.attachments:
+            if 'a' or 'b' or 'c'  in cmessage:
+                if x!=3:
+                    try:
+                        await message.add_reaction('🅾️')
+                        asyncio.sleep(1)
+                        await message.add_reaction('🇰')
+                        asyncio.sleep(1)
+                        await message.add_reaction('<:bedlove:941046929243111525>')
+                        asyncio.sleep(1)
+                        await message.add_reaction('🅱️')
+                        asyncio.sleep(1)
+                        await message.add_reaction('🇮')
+                        asyncio.sleep(1)
+                    except RuntimeWarning:
+                        pass                                 
+                elif x==3:
+                    await sendmessage(message, 10, "Ok Bi")
+                    return
+                elif x==5:
+                    await sendmessage(message, 10, "Tumhare Michael Papa bhi yehi kehte the")
+                    return
+        else:
+            pass        
+######################################################## Garv ######################################
+
+    user = client.get_user(garv)
+    if message.author == user:
+        if not message.attachments:
+            if 'ask' in cmessage:
+                sendfile(message, 1, "wedo.mp4")
+                return                
+            elif 'care' in cmessage:
+                sendfile(message, 1, "wedo.mp4")
+                return
+                
+            if 'a' or 'b' or 'c'  in cmessage:                   
+                    if x==1:
+                        await sendmessage(message, 12, random.choice(garvasked))
+                        return
+                        
+                    
+        else:
+             pass                 
+
+######################################################## Qasim ######################################
+
+    user = client.get_user(qasim)
+    if message.author == user:
+        if not message.attachments:
+            if x==1:
+                await sendmessage(message, 12, "Nai kya matlab ha tumhara. <@"+ str(random.choice(qasimchoice)) + ">. Idhr ayen zara")
+                return
+            
+        else:
+             pass                 
+         
+######################################################## rand ######################################
+    user = client.get_user(270904126974590976)
+    if message.author == user:
+        if x == 1:
+            await sendfile(message, 1, "yekoi.mp4")
+        elif x==3:
+            await sendfile(message, 1, "rajpal.mp4")
+            
+
 
 
 
@@ -379,4 +404,3 @@ async def on_member_remove(member):
  
  
  
-client.run("MTA2NzgwOTAwNTU5MTg1OTM2MA.GzrGkR.TO12jmCU23EADjFeMk3T8dpn79OJkWa9ytJoZ0")
