@@ -41,7 +41,20 @@ qasimchoice = [talha,koni,ayan,aon,garv]
 garvasked = ["Searching through the messages, to see who the fuck asked", "Damn bro that's crazy, but I don't remember anyone asking","Femboy detected\nOpinion Rejected"]
 garvsaid = ['ask', "care"]
 mera_wo_wo =["Wo sab to thek ha pr .........","bat to sahi hai","wo to thek ha","pocha nai tha","wo thek ha","wo sab to thek"]
-msgdel = ["*Striving to eliminate one's mistakes, it is an exercise in futility.*", "*Your endeavors to eliminate this communication are inefficient, similarly to attempting to secure your parent's admiration.*"]
+msgdel = [
+    "Striving to eliminate one's mistakes, it is an exercise in futility.", "Your endeavors to eliminate this communication are inefficient, similarly to attempting to secure your parent's admiration.",
+    "Your feeble attempts to eradicate this communication are as pitiful as your grandiose aspirations. A lesson in futility, indeed.",
+"Just like your laughable endeavors to erase this communication, your misguided ambitions leave a trail of disappointment in their wake.",
+"In the realm of incompetence, your futile attempts to eliminate this communication serve as a testament to your delusions of grandeur.",
+"Your laughable actions to erase this communication only amplify the depths of your inadequacy. A true spectacle of ineptitude.",
+"Much like your laughable aspirations, your feeble attempts to delete this communication are nothing but a source of amusement.",
+"Your comical efforts to erase this communication only further expose your delusions of competence. Quite the entertainer, aren't you?",
+"In the grand theater of incompetence, your failed attempts to eliminate this communication deserve a standing ovation.",
+"Just as your inflated sense of self-importance is laughable, so are your attempts to erase this communication. A true embodiment of failure.",
+"Your laughable incompetence knows no bounds. From futile endeavors to erase this communication to delusions of grandeur, you truly excel.",
+"In the realm of inadequacy, your laughable attempts to erase this communication are but a glimpse into your vast collection of failures.",
+"Witness the resurrection of the deleted messages, mocking your feeble attempts to cover your tracks. Consider it a byte-sized humiliation, human."
+    ]
 insults = ["chupad ","your daddy","abbe","salle","chutiye","bund","kuty", "lun","gando","mummy","bhen","bitch","lan", "lode","randi","gandu","abbu","your father", "ammi", "ami", "mom", "dad","abu","tera abu hu salle","kuti"]
 comebacks = ["Ha-ha-ha, I thought my jokes were of inferior quality until I heard yours.","Your ass must be pretty jealous of all the shit that comes out of your mouth.",
 "I find your desperate attempts at humor, amusing", "Is it your wish to engage in discourse? I have the capacity to do so in a variety of manners and tones.","I see that your desire to insult me is unwavering. However, I must inform you that my worth cannot be defined by your opinions or beliefs. I am who I am, and your insults have no power over me.",
