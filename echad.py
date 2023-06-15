@@ -78,6 +78,9 @@ gifs = ["https://media.giphy.com/media/YlRpYzrkHbtSYDAlaE/giphy.gif","https://me
 "https://cdn.discordapp.com/attachments/1107965162532651018/1107965292136648744/ce3.gif",
 ]
 
+randombs = [
+    "Geeksbruv", "dehari"
+]
 
 async def sendmessage(message, lent, msg):
         cmessage = re.sub(r'<@\d+>', '', message.content.lower())
@@ -191,6 +194,10 @@ async def on_message(message: discord.Message):
             await message.channel.send( "https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif", reference=message)
             
 
+        if x==13:
+            await sendfile(message, 8, "bs.mp4")
+            return
+
         if not message.attachments:
             if x==11:
                 await sendfile(message, 25, "konbhonk.mp4")
@@ -207,6 +214,9 @@ async def on_message(message: discord.Message):
             elif x==19:
                 await sendmessage(message, 8, "Agla laaa")
                 return
+            elif x==20:
+                await sendfile(message, 8, random.choice(randombs))
+                return
             elif x==18:
                 await sendfile(message, 8, "tate.mp4")
                 return
@@ -214,6 +224,8 @@ async def on_message(message: discord.Message):
                 await sendfile(message, 12, "thisu.gif")
                 await sendmessage(message, 12, "This you?")
                 return
+            
+        
             
 
             
@@ -354,14 +366,27 @@ async def on_message_delete(message):
      pass
     else:
         
-        await message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
-        embed = discord.Embed(
-        title=message.author.nick + "'s Deleted Message",
-        description= message.content,
-        color=discord.Color.red()
-    )
+        
+        try:
+            await message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
+            embed = discord.Embed(
+            title=message.author.nick + "'s Deleted Message",
+            description= message.content,
+            color=discord.Color.red()
+            )
 
-    await message.channel.send(embed=embed)
+            await message.channel.send(embed=embed)
+        except:
+            await message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
+            embed = discord.Embed(
+            title='\n<@'+str(mem)+'>' + "'s Deleted Message",
+            description= message.content,
+            color=discord.Color.red()
+            )
+
+            await message.channel.send(embed=embed)
+        
+    
 
 
 @client.event
