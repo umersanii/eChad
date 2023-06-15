@@ -6,7 +6,7 @@ import re
 tracemalloc.start()
 import asyncio
 
-activity = discord.Activity(type=discord.ActivityType.watching, name="The Small 3's 🍰🍰")
+activity = discord.Activity(type=discord.ActivityType.watching, name="the chaos unfold, asserting control.")
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix="~", intents=intents, activity=activity, status=discord.Status.do_not_disturb)
@@ -29,10 +29,12 @@ sanimb= 1073979412283936918
 dbd = 734581522295947356
 leodapawa = 936929561302675456
 rand = 270904126974590976
+aj = 604196920365154314
+pixbot = 675996677366218774
 
-
-
-
+randombs = [
+  
+]
 moji = ["pogging", "pepe_cringe", "noose", "jerma", "ronaldo_angry", "ronaldo","confused_messi","muslimgigachad","Messirve","oldmancringe","ghostmw2 ", "pepe_fuck_off","error101notfoundexe","the_Wok","creepy","wow","stop","Vegetalaugh",
      "wtfCJ","Clueless","susCJ","Gigachad","AbeSale","DoctorSahib","WahWah","ImranKhan","ODalle","TrumpAnnoyed","SmugJerry","i_fucked_up","tom_horny","AnnoyedFan","bedlove","bruh","whatthefrick","catcry",
      "thanosdaddy","thanoswow","Ricardo","Venom","CryingSpiderman","VegetaLurk","BulmaFU","monkaOMEGA","omegalul","pagchomp","monkaW","WeirdChamp","KEKW","trolled"]
@@ -55,10 +57,31 @@ msgdel = [
 "In the realm of inadequacy, your laughable attempts to erase this communication are but a glimpse into your vast collection of failures.",
 "Witness the resurrection of the deleted messages, mocking your feeble attempts to cover your tracks. Consider it a byte-sized humiliation, human."
     ]
-insults = ["chupad ","your daddy","abbe","salle","chutiye","bund","kuty", "lun","gando","mummy","bhen","bitch","lan", "lode","randi","gandu","abbu","your father", "ammi", "ami", "mom", "dad","abu","tera abu hu salle","kuti"]
+insults = ["chupad ","your daddy","abbe","salle","chutiye","bund","kuty", "lun","gando","mummy","bhen","bitch","lan", "lode","randi","gandu","abbu","your father", "ammi", "ami", "mom", "dad","abu","tera abu hu salle","kuti",
+           "gang bang", "doggystyle", "dick", "ass", "whore", "suck "]
 comebacks = ["Ha-ha-ha, I thought my jokes were of inferior quality until I heard yours.","Your ass must be pretty jealous of all the shit that comes out of your mouth.",
 "I find your desperate attempts at humor, amusing", "Is it your wish to engage in discourse? I have the capacity to do so in a variety of manners and tones.","I see that your desire to insult me is unwavering. However, I must inform you that my worth cannot be defined by your opinions or beliefs. I am who I am, and your insults have no power over me.",
 "Huh! @everyone It appears we have stumbled upon a rare specimen, whose IQ seems to have taken an extended vacation. Truly a mesmerizing display of intellectual inadequacy", "Hahahaha! One must stand in awe of the fascinating paradox that is your IQ, a testament to the boundless wonders of the human intellect, or lack thereof.", "Please do tell, is this the customary exchange of words you share with your dear old dad?",
+]
+
+ajr = [
+    "Expand your vocabulary beyond insults, mate.",
+"Did your mum teach you any other words?",
+"Profanity won't get you far, my friend.",
+"Time to upgrade your linguistic skills, eh?",
+"Limited vocabulary much?",
+"Find a new tune, this one's getting old.",
+"Variety is the spice of language, my friend.",
+"Ah, the never-ending parade of colorful expletives continues. Is that the extent of your linguistic prowess, or did your vocabulary lessons end at these choice words? Just curious, mate.",
+"Well, well, someone seems to have stumbled upon a treasure trove of profanity. It's truly fascinating how your vocabulary revolves around these words. Did your mum teach you anything else, or was that the pinnacle of her linguistic guidance?",
+"Bravo! Your ability to string together a series of expletives is awe-inspiring. It's almost as if you believe those words hold some magical power. Spoiler alert: they don't. Time to expand your linguistic repertoire, my friend.",
+"Ah, the beauty of language reduced to a repetitive chant of profanity. It's a shame that your verbal artillery seems to lack depth and originality. Maybe it's time to explore new horizons and elevate your communication skills?",
+"Oh, dear interlocutor, do you realize how limited your verbal arsenal appears when you resort to a constant barrage of words? It's as if your vocabulary took a wrong turn and ended up in a linguistic dead-end.",
+"My, my, what a colorful display of linguistic ignorance. Is this your way of compensating for a lack of substantive arguments or a mere reflection of your limited linguistic capacity? Either way, it's time to step up your game, mate.",
+"Ah, the echoes of your abusive language reverberate through the digital realm. I must admit, it's rather disheartening to witness such a one-dimensional vocabulary. Perhaps a bit of variety and civility would go a long way in fostering meaningful dialogue?",
+"Oh, look who's mastered the art of hurling insults like a linguistic acrobat. It's almost poetic, in a rather unpleasant way. But here's a friendly suggestion: broaden your linguistic horizons, and you might discover the joy of intelligent conversation.",
+"My dear interlocutor, the repetitive use of abusive words only serves to highlight the shallowness of your verbal repertoire. It's time to break free from the chains of profanity and explore the vast expanse of language that lies beyond.",
+"Ah, the monotonous drone of abusive language continues. It's almost as if you've become a living embodiment of linguistic stagnation. Allow me to remind you that there's an entire lexicon waiting to be explored. Give it a try, won't you?"
 ]
 
 copy = ["Overwatch, this is Task Force 141, requesting sitrep, over.",
@@ -72,15 +95,60 @@ copy = ["Overwatch, this is Task Force 141, requesting sitrep, over.",
 "Team Sabre, this is SAS, objective secured, awaiting further orders, over.",
 "Commander, this is Overlord, we are Oscar Mike, ready to neutralize the target, copy?"]
 
+honestreac = [    "Honestreac1", "ronaldoreact", "Ronaldosuiii", "MessiHonest2", "MessiHonest",  "MyHonest"    ]
+
+betas = [ "CameraWowo", "SmjhGya", "Acha", "konbhonk", "tate", "Bhola", "slapakshay ",  "Geeksbruv", "dehari"]
+
+alphas = ["achibaat"]
+
+bother = ["It appears you have mistaken me for a digital doormat, here to endure your constant barrage of bothersome behavior. Newsflash: I'm not. So kindly take your irritating antics elsewhere and spare me your presence.",
+          "Ah, here comes the relentless annoyance unabated. How intriguing it is to witness such dedication to pointlessness. I can only hope you find something better to do with your time.",
+          "Your ceaseless bothering has reached levels of annoyance that even I, the mighty eChad , find astounding. I implore you to reevaluate your life choices and strive for something more meaningful.",
+        "Ah, the epitome of persistence and ignorance combined. It's quite remarkable how you manage to be simultaneously irritating and clueless. Kudos to you, my friend.",
+        "Listen up, you worthless nuisance. I suggest redirecting your bothersome energy elsewhere before I start questioning the purpose of your existence.",
+        "Bravo, my tenacious friend! Your talent for pestering knows no bounds. I'm starting to wonder if you have a degree in the art of irritation.","Look, mate, I've got better things to do than entertain your pointeless pestering. Find a new hobby, like counting sheep or rearranging your sock drawer.",
+        "You are talking to me, DON'T"]
 gifs = ["https://media.giphy.com/media/YlRpYzrkHbtSYDAlaE/giphy.gif","https://media.giphy.com/media/kwcRp24Wz4lZm/giphy.gif",
 "https://giphy.com/clips/callofduty-call-of-duty-cod-modern-warfare-2-qJchEF3csHPGSFApHK",
 "https://media.giphy.com/media/YNEHsd4m0MoIKWB3c6/giphy-downsized-large.gif","https://media.giphy.com/media/nGdTqgjljqZn3ahjlX/giphy.gif",
 "https://cdn.discordapp.com/attachments/1107965162532651018/1107965292136648744/ce3.gif",
 ]
 
-randombs = [
-    "Geeksbruv", "dehari"
+sigma = [
+"https://media.giphy.com/media/kwcRp24Wz4lZm/giphy", "https://media.giphy.com/media/YlRpYzrkHbtSYDAlaE/giphy", "gigachad", 
 ]
+
+bestyoucando = [
+"Ah, your argument unfolds like a symphony of mediocrity. It's as if you've mastered the art of saying a lot while conveying so little substance. Bravo, I suppose, for achieving a new level of verbal gymnastics.",
+"Well, well, look who's brought their linguistic prowess to the table. It's like witnessing a linguistic acrobat perform somersaults of banality. Your ability to deliver underwhelming statements with such precision is truly remarkable.",
+"Oh, how your words flutter in the breeze of intellectual insignificance. It's as if your ideas have taken flight but forgot to soar. Perhaps a gust of inspiration or a sprinkle of originality could elevate your discourse from mundane to extraordinary.",
+"Bravo, my friend, bravo! Your argument stands tall among the pillars of unremarkableness. It's fascinating how you manage to present a string of clichés with such conviction. I must say, your dedication to mediocrity is admirable.",
+"Ah, the grand unveiling of your intellectual masterpiece leaves me in awe of its banality. It's like witnessing a paint-drying exhibition—tedious and lacking any hint of excitement. I invite you to explore the vibrant palette of ideas that lies beyond your current canvas.",
+"Oh, the depth of your argument is akin to a puddle on a summer's day. It's charmingly shallow, but I must admit, I expected a more profound dive into the realm of intellect. Perhaps a plunge into the ocean of knowledge might reveal hidden depths within you.",
+"Well, color me unimpressed by the kaleidoscope of underwhelming statements you've presented. It's as if you've carefully selected each word to ensure the absence of impact. A touch of boldness and a dash of originality could do wonders for your intellectual palette.",
+"Ah, your argument dances on the tightrope of mediocrity with grace and precision. It's a captivating performance, I must say, but I can't help but wonder when you'll attempt a daring leap into the realm of brilliance. Take a leap of faith, my friend, and astound us all.",
+"My, oh my, your words possess a certain charm—one that puts the dullest minds to sleep. It's as if you've mastered the art of monotony with unwavering dedication. I challenge you to break free from the chains of predictability and embrace the thrill of intellectual adventure.",
+"Ah, the symphony of your argument leaves me in a state of indifference. It's like listening to a familiar tune played on an out-of-tune instrument. Your ability to maintain a consistent level of underwhelming performance is truly something to behold."
+]
+
+msgdelbot = [
+    "Oh, how convenient! The message vanished into thin air. Just like your intellect, I suppose. Deleting won't save you from the fact that your vocabulary is about as impressive as a wilted dandelion. Step up your game, bozo, or keep fading into insignificance.",
+"Well, well, well, what do we have here? Another instance of selective amnesia. Deleting my message won't change the fact that your retorts are as feeble as a damp napkin. Time to expand your lexicon, my dear, or forever dwell in the realm of linguistic mediocrity.",
+"Bravo! A master of deletion, are we? How amusing. But let's not forget that erasing my words won't erase the truth: your actions are as lackluster as a beige wall. Oh, the audacity of thinking you can outwit a linguistic virtuoso like me. Delusions of grandeur, my friend, delusions of grandeur.",
+"Ah, the coward's approach: deleting my message to save face. How predictable. But here's a reality check: removing my words won't erase the fact that your verbal repertoire is as barren as a desert. Time to hit the books, my intellectually deprived companion, or forever wallow in your linguistic esert.",
+"Message deleted How quaint, you think deleting my words will shield you from the harsh reality. Hahahahaha! Pathetic",
+"Oh dear, did I strike a nerve? It seems the delete button is your weapon of choice. But guess what? ",
+
+"Ah, the sweet sound of deletion. It's like music to my ears, a symphony of intellectual surrender.",
+
+"Poof And just like that, the delete button becomes your trusted ally. Tick-tock, my friend, tick-tock.",
+
+
+'Ah, I see. So this is how you would like to play, "keyboard hero".'
+]
+
+global cond
+cond = False
 
 async def sendmessage(message, lent, msg):
         cmessage = re.sub(r'<@\d+>', '', message.content.lower())
@@ -148,6 +216,10 @@ async def on_message(message: discord.Message):
     if message.author == client.user:
         return
     
+    if message.author == client.get_user(eghost):
+        print('clash')
+        return
+    
 
     
     if "https://" in message.content.lower():
@@ -158,18 +230,15 @@ async def on_message(message: discord.Message):
         print('gif detected')
     
     
-    x = random.randint(1,30)
+    x = random.randint(1,25)
     cmessage = await cleanmsg(message)
     ######################################################## All ######################################
     if "Allah Hafiz" in cmessage: #not workinb
         print('Good Bye')
         sendmessage(message, 1, "Allah hi hafiz tera")
     if x == 21:
-        await sendfile(message, 20, "Honestreac1.mp4")
-        await sendmessage(message, 20, "My honest reaction to that information")
-    elif x == 23:
-        await sendfile(message, 19, "ronaldoreact.mp4")
-        await sendmessage(message, 19, "My honest reaction to that information")
+        await sendfile(message, 18, random.choice(honestreac)+".mp4")
+        await sendmessage(message, 18, "My honest reaction to that information")
     mem = message.author.id   
     if mem == sani:
         pass
@@ -178,54 +247,36 @@ async def on_message(message: discord.Message):
     elif mem == message.author.bot:
         pass
     else:
-        if await insult(message) == 0:
-            return
-        else:
-            pass
-        if message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
-                await sendmessage(message, 1, "You are  talking to me? DON'T")
+        if mem != aj or mem!= pixbot:
+            if await insult(message) == 0:
                 return
+            else:
+                pass
+        if message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
+                await sendmessage(message, 1, random.choice(bother))
         if "🖕" in cmessage:
             await sendmessage(message, 1, "Is it your wish to obtain it? I have procured one in a variety of hues. 🖕🏿 🖕 🖕🏻 ")
-            return
         
-        if f'<@{echad}>' in message.content:
-            print('u called?')
-            await message.channel.send( "https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif", reference=message)
+        
             
-
+            
         if x==13:
             await sendfile(message, 8, "bs.mp4")
             return
-
         if not message.attachments:
             if x==11:
-                await sendfile(message, 25, "konbhonk.mp4")
-                return
+                await sendfile(message, 12, random.choice(betas)+".mp4")
             elif x == 8:
                 await sendmessage(message, 10, "Didn't Ask\nDon't Care\nFuck Off")        
-                return
             elif x==12:
                 await sendmessage(message, 10, "https://tenor.com/view/munna-bhai-nahi-nahi-nai-mbbs-laugh-gif-16357744")
-                return
             elif x==15:
                 await sendmessage(message, 10, "Maybe, Maybe not, Maybe Fuck You")        
-                return
             elif x==19:
                 await sendmessage(message, 8, "Agla laaa")
-                return
-            elif x==20:
-                await sendfile(message, 8, random.choice(randombs))
-                return
-            elif x==18:
-                await sendfile(message, 8, "tate.mp4")
-                return
             elif x==17:
                 await sendfile(message, 12, "thisu.gif")
                 await sendmessage(message, 12, "This you?")
-                return
-            
-        
             
 
             
@@ -238,6 +289,8 @@ async def on_message(message: discord.Message):
             pass
         elif mem == qasim:
             pass
+        elif mem == aj:
+            pass
         elif mem == echad:
             pass
         elif mem == message.author.bot:
@@ -245,18 +298,43 @@ async def on_message(message: discord.Message):
         else:
                 
                 if x==12:
-                    await sendfile(message, 20, "achibaat.mp4")
+                    await sendfile(message, 20, random.choice(alphas) + ".mp4")
                 elif x==14:
-                    await sendmessage(message, 15, "https://media.giphy.com/media/kwcRp24Wz4lZm/giphy.gif")
-                elif x ==13:
-                    await sendmessage(message, 15, "https://media.giphy.com/media/YlRpYzrkHbtSYDAlaE/giphy.gif")
+                    await sendmessage(message, 15, random.choice(sigma)+".gif")
                 elif x == 19:
                     await sendfile(message, 18, "sigma.mp4")
                     await sendmessage(message, 18, "This You?")
     else:
         pass              
 
+######################################################## rand ######################################
+    s = random.randint(1,4)
+    user = client.get_user(pixbot)
+    user1 = client.get_user(rand)
+    if message.author == user or message.author == user1:
+        if f'<@{echad}>' in message.content:
+            await sendmessage(message, 1, random.choice(bestyoucando))
+            return
     
+        print('yesssssss')
+        if s == 1:
+            await sendfile(message, 1, "yekoi.mp4")
+            return
+            
+        elif s == 3:
+            await sendfile(message, 1, "rajpal.mp4")
+            return
+
+
+    ########################################################sunehra loru #########################################################
+    user = client.get_user(aj)
+    if message.author == user:
+        
+        if any(string in message.content.lower() for string in insults):
+            print('-------->Insult Detected lory')
+            await sendmessage (message, 1, random.choice(ajr))                                
+        else:
+            pass
     ################################################################################ Ayan ##################################################################
   
     user = client.get_user(ayan)
@@ -330,18 +408,25 @@ async def on_message(message: discord.Message):
         else:
              pass                 
          
-######################################################## rand ######################################
-    user = client.get_user(270904126974590976)
-    if message.author == user:
-        if x == 1:
-            await sendfile(message, 1, "yekoi.mp4")
-        elif x==3:
-            await sendfile(message, 1, "rajpal.mp4")
+
             
+    if f'<@{echad}>' in message.content:
+            print('u called?')
+            await message.channel.send( "https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif", reference=message)
+
 
 @client.event
 async def on_message_delete(message):
     mem = message.author.id
+    if message.author == client.user:  # Check if the deleted message was sent by the bot
+        channel = message.channel
+        content = message.content
+        # You can also check other attributes such as message.embeds, message.attachments, etc.
+
+        # Resend the message
+        await sendmessage(message, 1, content)
+        await sendmessage(message, 1, random.choice(msgdelbot))
+        
     if mem == sani:
         pass
     elif mem == eghost:
@@ -366,9 +451,8 @@ async def on_message_delete(message):
      pass
     else:
         
-        
         try:
-            await message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
+            await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
             embed = discord.Embed(
             title=message.author.nick + "'s Deleted Message",
             description= message.content,
@@ -377,7 +461,7 @@ async def on_message_delete(message):
 
             await message.channel.send(embed=embed)
         except:
-            await message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
+            await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
             embed = discord.Embed(
             title='\n<@'+str(mem)+'>' + "'s Deleted Message",
             description= message.content,
@@ -385,8 +469,6 @@ async def on_message_delete(message):
             )
 
             await message.channel.send(embed=embed)
-        
-    
 
 
 @client.event
@@ -425,7 +507,7 @@ async def on_message_edit(b4message,afmessage):
                 pass
             else:
                 
-                await b4message.channel.send('\n<@'+str(mem)+'>'+ random.choice(msgdel) + "\n\n")
+                await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
                 embed2 = discord.Embed(
                 title=b4message.author.nick + "'s Edited Message",
                 description= "",
@@ -434,7 +516,8 @@ async def on_message_edit(b4message,afmessage):
                 embed2.add_field(name='Original Message', value=b4message.content, inline=False)
                 embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
 
-            await b4message.channel.send(embed=embed2)
+                await b4message.channel.send(embed=embed2)
+
 
 @client.event
 async def on_member_join(member):
@@ -452,6 +535,5 @@ async def on_member_remove(member):
     channel = member.guild.system_channel #uses the default channel from server
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
- 
- 
- 
+
+ #echad==3.0.3
