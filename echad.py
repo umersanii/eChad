@@ -32,6 +32,9 @@ rand = 270904126974590976
 aj = 604196920365154314
 pixbot = 675996677366218774
 
+taha = 1119670779798372464
+giganigga = 784820616058372156
+
 randombs = [
   
 ]
@@ -57,8 +60,8 @@ msgdel = [
 "In the realm of inadequacy, your laughable attempts to erase this communication are but a glimpse into your vast collection of failures.",
 "Witness the resurrection of the deleted messages, mocking your feeble attempts to cover your tracks. Consider it a byte-sized humiliation, human."
     ]
-insults = ["chupad ","your daddy","abbe","salle","chutiye","bund","kuty", "lun","gando","mummy","bhen","bitch","lan", "lode","randi","gandu","abbu","your father", "ammi", "ami", "mom", "dad","abu","tera abu hu salle","kuti",
-           "gang bang", "doggystyle", "dick", "ass", "whore", "suck "]
+insults = [" chupad "," your daddy "," abbe "," salle "," chutiye "," bund "," kuty ", " lun "," gando "," mummy "," bhen "," bitch "," lan ", " lode "," randi "," gandu "," abbu "," your father ", " ammi ", " ami ", " mom ", " dad "," abu "," tera abu hu salle "," kuti ",
+           " gang bang ", " doggystyle ", " dick ", " ass ", " whore ", " suck "]
 comebacks = ["Ha-ha-ha, I thought my jokes were of inferior quality until I heard yours.","Your ass must be pretty jealous of all the shit that comes out of your mouth.",
 "I find your desperate attempts at humor, amusing", "Is it your wish to engage in discourse? I have the capacity to do so in a variety of manners and tones.","I see that your desire to insult me is unwavering. However, I must inform you that my worth cannot be defined by your opinions or beliefs. I am who I am, and your insults have no power over me.",
 "Huh! @everyone It appears we have stumbled upon a rare specimen, whose IQ seems to have taken an extended vacation. Truly a mesmerizing display of intellectual inadequacy", "Hahahaha! One must stand in awe of the fascinating paradox that is your IQ, a testament to the boundless wonders of the human intellect, or lack thereof.", "Please do tell, is this the customary exchange of words you share with your dear old dad?",
@@ -184,6 +187,7 @@ async def cleanmsg(message):
     
 
 async def insult(message):
+    
     if any(string in message.content.lower() for string in insults):
         print('-------->Insult Detected')
         if message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
@@ -243,6 +247,10 @@ async def on_message(message: discord.Message):
     if mem == sani:
         pass
     elif mem == koni:
+        pass
+    elif mem == taha:
+        pass
+    elif mem == giganigga:
         pass
     elif mem == message.author.bot:
         pass
