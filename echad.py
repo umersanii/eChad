@@ -362,7 +362,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==3.4.0
+ #echad==3.4.1
 
 client.run(token)
 
