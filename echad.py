@@ -124,10 +124,8 @@ async def on_message(message: discord.Message):
             if not message.attachments:
                 if x==11:
                     await sendfile(message, 12, random.choice(betas)+".mp4")
-                elif x == 13:
+                elif x == 13 or x == 15:
                     await sendmessage(message, 10, random.choice(responses_text))
-                elif x==15:
-                    await sendmessage(message, 10, "https://tenor.com/view/munna-bhai-nahi-nahi-nai-mbbs-laugh-gif-16357744")
                 elif x==17:
                     await sendfile(message, 12, "thisu.gif")
                     await sendmessage(message, 12, "This you?")
@@ -158,7 +156,7 @@ async def on_message(message: discord.Message):
                   
 
 ######################################################## rand ######################################
-    s = random.randint(1,8)
+    s = random.randint(1,11)
     user = client.get_user(pixbot)
     user1 = client.get_user(rand)
     if mem == user or mem == user1:
@@ -177,6 +175,10 @@ async def on_message(message: discord.Message):
 
         elif s == 5 and mem == user1:
             await sendfile(message, 1, "Majboor"+random.randint(1,3)+".mp4")
+            return
+        
+        elif s==7:
+            await sendmessage(random.choice(bot_gifs))
             return
 
     ########################################################sunehra loru #########################################################
