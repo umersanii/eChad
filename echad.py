@@ -267,7 +267,7 @@ async def on_message(message: discord.Message):
             
     if f'<@{echad}>' in message.content:
             print('You called?')
-            await message.channel.send(random.choice("https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif","https://cdn.discordapp.com/attachments/1107965162532651018/1122444106501734450/bruce2.gif"), reference=message)
+            await message.channel.send(message, 1, random.choice("https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif","https://cdn.discordapp.com/attachments/1107965162532651018/1122444106501734450/bruce2.gif"), reference=message)
             return
 
 
