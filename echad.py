@@ -202,6 +202,16 @@ async def on_message(message: discord.Message):
         else:
             pass
         
+     ################################################################################ Talha Bhai ##################################################################
+  
+    user = client.get_user(talha)
+    if message.author == user:
+        if not message.attachments:
+            if x in (1,3,7):
+                await message.add_reaction(':flag_pk:') 
+                return                                      
+        else:
+            pass
 ######################################################## Aon ######################################
 
     user = client.get_user(aon)
@@ -223,7 +233,7 @@ async def on_message(message: discord.Message):
                     except RuntimeWarning:
                         pass                                 
                 elif x==3:
-                    await sendmessage(message, 10, "Ok Bi")
+                    await sendmessage(message, 10, "Ok Gay")
                     return
                 elif x==5:
                     await sendmessage(message, 10, "Tumhare Michael Papa bhi yehi kehte the")
@@ -362,7 +372,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==3.4.1
+ #echad==3.4.3
 
 client.run(token)
 
