@@ -96,7 +96,7 @@ async def on_message(message: discord.Message):
         
     
     
-    x = random.randint(1,19)
+    x = random.randint(1,26)
     cmessage = await cleanmsg(message)
     ######################################################## All ######################################
     if "Allah Hafiz" in cmessage: #not workinb
@@ -106,7 +106,7 @@ async def on_message(message: discord.Message):
     if x == 21:
         await sendfile(message, 18, random.choice(honestreac)+".mp4")
         await sendmessage(message, 18, "My honest reaction to that information")
-    elif x == 23:
+    elif x in (23,24,25,26):
         try:
             await message.add_reaction('<:'+random.choice(moji)+':>')
         except Exception as e:
@@ -140,9 +140,9 @@ async def on_message(message: discord.Message):
                         await sendfile(message, 15, random.choice(alphas) + ".mp4")
                     elif x==14:
                         await sendmessage(message, 12, random.choice(sigma)+".gif")
-                    elif x == 16:
-                        await sendfile(message, 11, "sigma.mp4")
-                        await sendmessage(message, 11, "This You?")
+                    # elif x == 16:
+                    #     await sendfile(message, 11, "sigma.mp4")
+                    #     await sendmessage(message, 11, "This You?")
                     elif x==18:
                         try:
                             await message.add_reaction('<:Gigachad:970932041027829770>')
@@ -157,9 +157,8 @@ async def on_message(message: discord.Message):
 
 ######################################################## rand ######################################
     s = random.randint(1,11)
-    user = client.get_user(pixbot)
-    user1 = client.get_user(rand)
-    if mem == user or mem == user1:
+    if mem == pixbot or mem == rand:
+        print("Pass1")
         if f'<@{echad}>' in message.content:
             await sendmessage(message, 1, random.choice(bestyoucando))
             return
@@ -173,7 +172,7 @@ async def on_message(message: discord.Message):
             await sendfile(message, 1, "rajpal.mp4")
             return
 
-        elif s == 5 and mem == user1:
+        elif s == 5 and mem == rand:
             await sendfile(message, 1, "Majboor"+random.randint(1,3)+".mp4")
             return
         
@@ -372,7 +371,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==3.4.3
+ #echad==4.4.4
 
 client.run(token)
 
