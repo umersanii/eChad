@@ -60,10 +60,12 @@ async def donothing(ctx):
 
 @client.event
 async def on_ready():
-  print('It is Gold Eagle to Shadow Company, how Copy')
-  user = client.get_user(sani)
-  await user.send(random.choice(gifs)) 
-  await user.send(random.choice(copy))
+    
+    print('It is Gold Eagle to Shadow Company, how Copy')
+    user = client.get_user(sani)
+    await user.send(random.choice(gifs)) 
+    await user.send(random.choice(copy))
+    
 #   channel = client.get_channel(dildya)
 #   await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
 #   await channel.send("<:Gigachad:970932041027829770>")
@@ -76,8 +78,20 @@ async def on_message(message: discord.Message):
             'username': message.author.name,
         }
     await client.process_commands(message)
+    try:
+        guild = message.guild
+        emojis = guild.emojis
 
-   
+        animated_emojis = []
+        regular_emojis = []
+
+        for emoji in emojis:
+            if emoji.animated:
+                animated_emojis.append(emoji)
+            else:
+                regular_emojis.append(emoji)
+    except:
+        pass
     if message.author == client.user:
         return
     
@@ -106,9 +120,11 @@ async def on_message(message: discord.Message):
     if x == 21:
         await sendfile(message, 18, random.choice(honestreac)+".mp4")
         await sendmessage(message, 18, "My honest reaction to that information")
+
     elif x in (23,24,25,26):
         try:
-            await message.add_reaction('<:'+random.choice(moji)+':>')
+            await sendmessage(message, 1, random.choice(animated_emojis))
+            return
         except Exception as e:
             print(e)
             pass
@@ -151,33 +167,39 @@ async def on_message(message: discord.Message):
                             pass
             else:
                 pass
-                
+    elif 10 <= x <= 20:
+        try:
+            await message.add_reaction(random.choice(animated_emojis))
+        except Exception as e:
+            print(e)
+            pass
+        
                     
                   
 
 ######################################################## rand ######################################
-    s = random.randint(1,11)
-    if mem == pixbot or mem == rand:
-        print("Pass1")
+    s = random.randint(1,8)
+    if mem in (rand,pixbot):
+        print(s)
         if f'<@{echad}>' in message.content:
             await sendmessage(message, 1, random.choice(bestyoucando))
             return
     
         print('-------------------->Bot has entered the chat')
         if s == 1:
-            await sendfile(message, 1, "yekoi.mp4")
+            await sendfile(message, -1, "yekoi.mp4")
             return
             
         elif s == 3:
-            await sendfile(message, 1, "rajpal.mp4")
+            await sendfile(message, -1, "rajpal.mp4")
             return
 
         elif s == 5 and mem == rand:
-            await sendfile(message, 1, "Majboor"+random.randint(1,3)+".mp4")
+            await sendfile(message, -1, "Majboor"+str(random.randint(1,3))+".mp4")
             return
         
         elif s==7:
-            await sendmessage(random.choice(bot_gifs))
+            await sendmessage(message, -1, random.choice(bot_gifs))
             return
 
     ########################################################sunehra loru #########################################################
@@ -283,6 +305,7 @@ async def on_message(message: discord.Message):
 @client.event
 async def on_message_delete(message):
     mem = message.author.id
+    
  
     if message.id in tracked_messages:
         deleted_message = tracked_messages[message.id]
@@ -371,7 +394,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==4.4.4
+ #echad==4.4.5
 
 client.run(token)
 
