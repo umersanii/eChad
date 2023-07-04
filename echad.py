@@ -320,31 +320,25 @@ async def on_message_delete(message):
         await channel.send(content)
         await channel.send(random.choice(msgdelbot))
         
-    for mem in alpha_ids:
-        if mem == alpha_ids:
-            pass
-        if message.author.bot:
-            pass
-        else:
-            
-            try:
-                await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-                embed = discord.Embed(
-                title=message.author.nick + "'s Deleted Message",
-                description= message.content,
-                color=discord.Color.red()
-                )
+    if mem not in alpha_ids and message.author.bot:
+        try:
+            await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
+            embed = discord.Embed(
+            title=message.author.nick + "'s Deleted Message",
+            description= message.content,
+            color=discord.Color.red()
+            )
 
-                await message.channel.send(embed=embed)
-            except:
-                await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-                embed = discord.Embed(
-                title='\n<@'+str(mem)+'>' + "'s Deleted Message",
-                description= message.content,
-                color=discord.Color.red()
-                )
+            await message.channel.send(embed=embed)
+        except:
+            await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
+            embed = discord.Embed(
+            title='\n<@'+str(mem)+'>' + "'s Deleted Message",
+            description= message.content,
+            color=discord.Color.red()
+            )
 
-                await message.channel.send(embed=embed)
+            await message.channel.send(embed=embed)
 
 
 @client.event
@@ -394,7 +388,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==4.4.5
+ #echad==4.4.6
 
 client.run(token)
 
