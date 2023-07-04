@@ -353,22 +353,17 @@ async def on_message_edit(b4message,afmessage):
         elif ".gif" in b4message.content.lower():
             return
         else:         
-            for mem in alpha_ids:
-                if mem ==alpha_ids:
-                    pass
-                elif b4message.author.bot:
-                    pass
-                else:
-                    await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-                    embed2 = discord.Embed(
-                    title=b4message.author.nick + "'s Edited Message",
-                    description= "",
-                    color=discord.Color.red())
-                    
-                    embed2.add_field(name='Original Message', value=b4message.content, inline=False)
-                    embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
+            if mem not in alpha_ids and b4message.author.bot:
+                await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
+                embed2 = discord.Embed(
+                title=b4message.author.nick + "'s Edited Message",
+                description= "",
+                color=discord.Color.red())
+                
+                embed2.add_field(name='Original Message', value=b4message.content, inline=False)
+                embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
 
-                    await b4message.channel.send(embed=embed2)
+                await b4message.channel.send(embed=embed2)
 
 
 @client.event
@@ -388,7 +383,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==4.4.6
+ #echad==4.4.7
 
 client.run(token)
 
