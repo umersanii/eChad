@@ -113,9 +113,12 @@ async def on_message(message: discord.Message):
     x = random.randint(1,26)
     cmessage = await cleanmsg(message)
     ######################################################## All ######################################
-    if "Allah Hafiz" in cmessage: #not workinb
+    if cmessage.content in bye: #not workinb
         print('Good Bye')
-        sendmessage(message, 1, "Allah hi hafiz tera")
+        sendmessage(message, 1, "Allah hi Hafiz tera")
+        return
+    elif "Allah" in cmessage.content:
+        return
         
     if x == 21:
         await sendfile(message, 18, random.choice(honestreac)+".mp4")
@@ -298,7 +301,7 @@ async def on_message(message: discord.Message):
             
     if f'<@{echad}>' in message.content:
             print('You called?')
-            await message.channel.send(message, 1, random.choice("https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif","https://cdn.discordapp.com/attachments/1107965162532651018/1122444106501734450/bruce2.gif"), reference=message)
+            await message.channel.send(message, 1, random.choice("https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif","https://cdn.discordapp.com/attachments/1107965162532651018/1122444106501734450/bruce2.gif","https://cdn.discordapp.com/attachments/1107965162532651018/1126045893137805403/ronnie_stare.gif"), reference=message)
             return
 
 
@@ -383,7 +386,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==4.4.7
+ #echad==4.4.8
 
 client.run(token)
 
