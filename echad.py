@@ -221,8 +221,8 @@ async def on_message(message: discord.Message):
         # await sendfile(message, 1, "ayan.png")
         if not message.attachments:
             if x in (1,3,7):
-                await sendmessage(message, 10, "Wo sab to thek ha pr .........\nHam ne pocha nai tha\n<:Gigachad:970932041027829770>")  
-                return                                      
+                await sendmessage(message, 10, random.choice("Wo sab to thek ha pr .........\nHam ne pocha nai tha\n<:Gigachad:970932041027829770>", "Ok Gay") )
+                return                            
         else:
             pass
         
@@ -232,8 +232,11 @@ async def on_message(message: discord.Message):
     if message.author == user:
         if not message.attachments:
             if x in (1,3,7):
+                await sendmessage(message, 6, "Ok :flag_pk:i")
+                return                                 
+            elif x in (2, 4, 6):
                 await message.add_reaction(':flag_pk:') 
-                return                                      
+                return
         else:
             pass
 ######################################################## Aon ######################################
@@ -291,7 +294,7 @@ async def on_message(message: discord.Message):
     if message.author == user:
         if not message.attachments:
             if x in (1,3,7,9):
-                await sendmessage(message, 12, "Nai kya matlab ha tumhara. <@"+ str(random.choice(qasimchoice)) + ">. Idhr ayen zara")
+                await sendmessage(message, 12, "Nai kya matlab ha tumhara. <@"+ str(random.choice(qasimchoice))+">. Idhr ayen zara")
                 return
             
         else:
@@ -407,7 +410,7 @@ async def on_member_update(before, after):
         except:
             channel = client.get_channel(1105938700359188530)
             await channel.send(embed=embed)
- #echad==4.4.9
+ #echad==4.4.11
 
 client.run(token)
 
