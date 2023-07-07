@@ -113,11 +113,11 @@ async def on_message(message: discord.Message):
     x = random.randint(1,26)
     cmessage = await cleanmsg(message)
     ######################################################## All ######################################
-    if cmessage.content in bye: #not workinb
+    if cmessage in bye: 
         print('Good Bye')
-        sendmessage(message, 1, "Allah hi Hafiz tera")
+        await sendmessage(message, 1, "Allah hi Hafiz ha tumhara")
         return
-    elif "Allah" in cmessage.content:
+    elif "Allah" in cmessage:
         return
         
     if x == 21:
@@ -141,7 +141,7 @@ async def on_message(message: discord.Message):
                 await sendmessage(message, 1, random.choice(bother))
             
             if not message.attachments:
-                if x==11:
+                if x==11 or x==19:
                     await sendfile(message, 12, random.choice(betas)+".mp4")
                 elif x == 13 or x == 15:
                     await sendmessage(message, 10, random.choice(responses_text))
@@ -197,11 +197,11 @@ async def on_message(message: discord.Message):
             await sendfile(message, -1, "rajpal.mp4")
             return
 
-        elif s == 5 and mem == rand:
+        elif (s == 5 or s == 6) and mem == rand:
             await sendfile(message, -1, "Majboor"+str(random.randint(1,3))+".mp4")
             return
         
-        elif s==7:
+        elif s == 7:
             await sendmessage(message, -1, random.choice(bot_gifs))
             return
 
@@ -323,7 +323,7 @@ async def on_message_delete(message):
         await channel.send(content)
         await channel.send(random.choice(msgdelbot))
         
-    if mem not in alpha_ids and message.author.bot:
+    if mem not in alpha_ids and not message.author.bot:
         try:
             await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
             embed = discord.Embed(
@@ -356,7 +356,7 @@ async def on_message_edit(b4message,afmessage):
         elif ".gif" in b4message.content.lower():
             return
         else:         
-            if mem not in alpha_ids and b4message.author.bot:
+            if mem not in alpha_ids and not b4message.author.bot:
                 await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
                 embed2 = discord.Embed(
                 title=b4message.author.nick + "'s Edited Message",
@@ -386,7 +386,7 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
- #echad==4.4.8
+ #echad==4.4.9
 
 client.run(token)
 
