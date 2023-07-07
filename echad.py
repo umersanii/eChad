@@ -386,6 +386,27 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe'+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
+@client.event
+async def on_member_update(before, after):
+        if before.nick != after.nick:
+            member = after
+            new_nickname = after.nick
+            old_nick = before.nick                
+            if old_nick == None:
+                desc = f"{member.name}'s name was changed to {new_nickname}!"
+            else:
+                f"{member.name}'s name was changed from {before.nick} nickname to {new_nickname}!"
+            embed = discord.Embed(
+                    title="Updated NickName!",
+                    description= desc,
+                    color=discord.Color.dark_blue()
+                    )
+        try:
+            channel = client.get_channel(1115766896810278993)
+            await channel.send(embed=embed)
+        except:
+            channel = client.get_channel(1105938700359188530)
+            await channel.send(embed=embed)
  #echad==4.4.9
 
 client.run(token)
