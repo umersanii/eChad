@@ -37,10 +37,6 @@ Make sure to install the necessary dependencies before running the bot.
 
 Contributions to the eChad Discord bot are welcome! If you have any enhancements, bug fixes, or new features to suggest, please feel free to submit a pull request or open an issue on the GitHub repository.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
 ---
 
 **Note**: This documentation provides an overview of the eChad Discord bot. For more detailed information, refer to the code comments and the official Discord.py documentation.
