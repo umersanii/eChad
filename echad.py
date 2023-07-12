@@ -113,11 +113,12 @@ async def on_message(message: discord.Message):
     x = random.randint(1,26)
     cmessage = await cleanmsg(message)
     ######################################################## All ######################################
-    if cmessage in bye: 
+    if any(string in message.content for string in bye):
         print('Good Bye')
         await sendmessage(message, 1, "Allah hi Hafiz ha tumhara")
         return
-    elif "Allah" in cmessage:
+    elif "Allah" or "Muhammad" or "Islam" in cmessage:
+        print('O Allah the Almighty')
         return
         
     if x == 21:
@@ -170,12 +171,19 @@ async def on_message(message: discord.Message):
                             pass
             else:
                 pass
-    elif 10 <= x <= 20:
-        try:
-            await message.add_reaction(random.choice(animated_emojis))
-        except Exception as e:
-            print(e)
-            pass
+    else:
+        if mem == qasim:
+            f1 = discord.File("qasim.png")
+            f2 = discord.File("qasim1.png")
+            await message.channel.send("** **", reference = message)
+            await message.channel.send(files=[f1,f2])
+            
+        if 10 <= x <= 20:
+            try:
+                await message.add_reaction(random.choice(animated_emojis))
+            except Exception as e:
+                print(e)
+                pass
         
                     
                   
@@ -219,9 +227,10 @@ async def on_message(message: discord.Message):
     user = client.get_user(ayan)
     if message.author == user:
         # await sendfile(message, 1, "ayan.png")
+        ayanlist = ["Wo sab to thek ha pr .........\nHam ne pocha nai tha\n<:Gigachad:970932041027829770>", "Ok Gay"]
         if not message.attachments:
             if x in (1,3,7):
-                await sendmessage(message, 10, random.choice("Wo sab to thek ha pr .........\nHam ne pocha nai tha\n<:Gigachad:970932041027829770>", "Ok Gay") )
+                await sendmessage(message, 10, random.choice(ayanlist))
                 return                            
         else:
             pass
@@ -232,7 +241,7 @@ async def on_message(message: discord.Message):
     if message.author == user:
         if not message.attachments:
             if x in (1,3,7):
-                await sendmessage(message, 6, "Ok :flag_pk:i")
+                await sendmessage(message, 6, "Ok  :flag_pk:i")
                 return                                 
             elif x in (2, 4, 6):
                 await message.add_reaction(':flag_pk:') 
@@ -327,24 +336,25 @@ async def on_message_delete(message):
         await channel.send(random.choice(msgdelbot))
         
     if mem not in alpha_ids and not message.author.bot:
-        try:
-            await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-            embed = discord.Embed(
-            title=message.author.nick + "'s Deleted Message",
-            description= message.content,
-            color=discord.Color.red()
-            )
+        if message.content != "":
+            try:
+                await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
+                embed = discord.Embed(
+                title=message.author.nick + "'s Deleted Message",
+                description= message.content,
+                color=discord.Color.red()
+                )
 
-            await message.channel.send(embed=embed)
-        except:
-            await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-            embed = discord.Embed(
-            title='\n<@'+str(mem)+'>' + "'s Deleted Message",
-            description= message.content,
-            color=discord.Color.red()
-            )
+                await message.channel.send(embed=embed)
+            except:
+                await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
+                embed = discord.Embed(
+                title='\n<@'+str(mem)+'>' + "'s Deleted Message",
+                description= message.content,
+                color=discord.Color.red()
+                )
 
-            await message.channel.send(embed=embed)
+                await message.channel.send(embed=embed)
 
 
 @client.event
@@ -360,16 +370,17 @@ async def on_message_edit(b4message,afmessage):
             return
         else:         
             if mem not in alpha_ids and not b4message.author.bot:
-                await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-                embed2 = discord.Embed(
-                title=b4message.author.nick + "'s Edited Message",
-                description= "",
-                color=discord.Color.red())
-                
-                embed2.add_field(name='Original Message', value=b4message.content, inline=False)
-                embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
+                if b4message.content != "":
+                    await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
+                    embed2 = discord.Embed(
+                    title=b4message.author.nick + "'s Edited Message",
+                    description= "",
+                    color=discord.Color.red())
+                    
+                    embed2.add_field(name='Original Message', value=b4message.content, inline=False)
+                    embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
 
-                await b4message.channel.send(embed=embed2)
+                    await b4message.channel.send(embed=embed2)
 
 
 @client.event
@@ -408,19 +419,19 @@ async def on_member_update(before, after):
                     description= desc,
                     color=discord.Color.dark_blue()
                     )
-        try:
-            channel = client.get_channel(1115766896810278993)
-            await channel.send(embed=embed)
-        except:
-            channel = client.get_channel(1105938700359188530)
-            await channel.send(embed=embed)
+            try:
+                channel = client.get_channel(1115766896810278993)
+                await channel.send(embed=embed)
+            except:
+                channel = client.get_channel(1105938700359188530)
+                await channel.send(embed=embed)
 
-        if before.id == 1101897763261796353 and before.nick != after.nick:
+        if before.id == sani and before.nick != after.nick:
             if c%2 != 0: 
                 await member.edit(nick=before.nick)
                 return
         
- #echad==4.4.12
+ #echad==4.4.13
 
 client.run(token)
 
