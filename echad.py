@@ -15,6 +15,27 @@ client = commands.Bot(command_prefix="~", intents=intents, activity=activity, st
 global cond
 cond = False
 
+async def rizz_fun(id, val):
+    value = None
+
+    with open("unspoken.txt", "r") as file:
+        lines = file.readlines()
+        for line_index, line in enumerate(lines):
+            if str(id) in line:
+                parts = line.split(" =")
+                if len(parts) == 2:
+                    value = int(parts[1].strip()) + val
+                    lines[line_index] = f"{parts[0]} = {str(value)}\n"
+                    break
+
+    if value is not None:
+        # Write the modified data back to the file
+        with open("unspoken.txt", "w") as file:
+            file.writelines(lines)
+
+    return value
+
+
 async def sendmessage(message, lent, msg):
         cmessage = await cleanmsg(message)
         if(len(cmessage))>lent:
@@ -28,17 +49,13 @@ async def sendfile(message,lent,filen):
         await message.channel.send(file=discord.File(filen))
         
 async def cleanmsg(message):
+    print(message.content)
     try:
-        cmessage = re.sub(r'<@\d+>', '', message.content.lower())
+        cmessage = re.sub(r'<([^<>]+)>', '', message.content.lower())
     except:
         pass
     
-    if any(s in cmessage for s in moji):
-        for s in moji:
-            cmessage = cmessage.replace(s,"")
-            
     return cmessage
-    
 
 async def insult(message):
     if any(string in message.content.lower() for string in insults):
@@ -108,16 +125,57 @@ async def on_message(message: discord.Message):
         print('---------->External link Detected')
         return
         
-    
-    
+    mem = message.author.id
     x = random.randint(1,26)
-    cmessage = await cleanmsg(message)
+    
+
+    ######################################################## Priority 1 ########################################################
+    if message.channel.id == unspoken_rizz:
+        if mem in rizzelers:
+            if message.attachments:
+                for attachment in message.attachments:
+                    target_extensions = (".jpeg", ".jpg", ".png")
+                    if attachment.filename.lower().endswith(target_extensions):
+                        if mem in alpha_ids:
+                            rizz_level = await rizz_fun(mem, 1)
+                            await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
+                            await message.channel.send(file=discord.File("RizzUp.mp4"))
+                            break
+                        else:
+                            odds_rizz = random.random.choice(["1,-1,-1,-1,1"])
+                            rizz_level = await rizz_fun(mem, odds_rizz)
+                            if odds_rizz == 1:
+                                await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
+                                await message.channel.send(file=discord.File("RizzUp.mp4"))
+                                break
+                            else:
+                                await sendmessage(message, -1, random.choice(rizzminus) + "\nRizz Level = " + str(rizz_level))
+                                await message.channel.send(file=discord.File("RizzDown.mp4"))
+                                break
+    odds = random.randint(1,6)
+    if mem in beta_ids:
+        if mem == qasim:
+            if odds == 3:
+                f1 = discord.File("qasim1.png")
+                f2 = discord.File("qasim.png")
+                await message.channel.send("** **", reference = message)
+                await message.channel.send(files=[f1,f2])
+                return
+        elif mem == talha:
+            if odds == 3:
+                f1 = discord.File("talha.png")
+                f2 = discord.File("talha1.png")
+                f3 = discord.File("talha2.png")
+                await message.channel.send("** **", reference = message)
+                await message.channel.send(files=[f1,f2,f3])
+                return
+        
     ######################################################## All ######################################
     if any(string in message.content for string in bye):
         print('Good Bye')
         await sendmessage(message, 1, "Allah hi Hafiz ha tumhara")
         return
-    elif "Allah" or "Muhammad" or "Islam" in cmessage:
+    elif any(string in message.content for string in sensitive_words):
         print('O Allah the Almighty')
         return
         
@@ -133,7 +191,6 @@ async def on_message(message: discord.Message):
             print(e)
             pass
 
-    mem = message.author.id
     if not message.attachments:
 
         if mem not in alpha_ids:
@@ -147,8 +204,8 @@ async def on_message(message: discord.Message):
                 elif x == 13 or x == 15:
                     await sendmessage(message, 10, random.choice(responses_text))
                 elif x==17:
-                    await sendfile(message, 12, "thisu.gif")
-                    await sendmessage(message, 12, "This you?")
+                    await sendfile(message, 15, "thisu.gif")
+                    await sendmessage(message, 15, "This you?")
 
             else:
                 await sendfile(message, 8, random.choice(response_file)+".mp4")
@@ -253,7 +310,7 @@ async def on_message(message: discord.Message):
     user = client.get_user(aon)
     if message.author == user:
         if not message.attachments:
-            if 'a' or 'b' or 'c'  in cmessage:
+            if 'a' or 'b' or 'c'  in message.content.lower():
                 if x!=3:
                     try:
                         await message.add_reaction('🅾️')
@@ -281,14 +338,14 @@ async def on_message(message: discord.Message):
     user = client.get_user(garv)
     if message.author == user:
         if not message.attachments:
-            if 'ask' in cmessage:
+            if 'ask' in message.content.lower():
                 sendfile(message, 1, "wedo.mp4")
                 return                
-            elif 'care' in cmessage:
+            elif 'care' in message.content.lower():
                 sendfile(message, 1, "wedo.mp4")
                 return
                 
-            if 'a' or 'b' or 'c'  in cmessage:                   
+            if 'a' or 'b' or 'c'  in message.content.lower():                   
                     if x in (1,3,7):
                         await sendmessage(message, 12, random.choice(garvasked))
                         return
@@ -309,12 +366,13 @@ async def on_message(message: discord.Message):
         else:
              pass                 
          
-
+    if "<@&1067810754088153094>" in message.content:
+        await message.channel.send('You mentioned me!')
+        print('You called?')
+        await sendmessage(message, 1, random.choice(u_called))
+        return
             
-    if f'<@{echad}>' in message.content:
-            print('You called?')
-            await message.channel.send(message, 1, random.choice("https://media.giphy.com/media/TfjcA7HkBeKSa7LH72/giphy-downsized-large.gif","https://cdn.discordapp.com/attachments/1107965162532651018/1122444106501734450/bruce2.gif","https://cdn.discordapp.com/attachments/1107965162532651018/1126045893137805403/ronnie_stare.gif"), reference=message)
-            return
+   
 
 
 @client.event
@@ -431,7 +489,6 @@ async def on_member_update(before, after):
                 await member.edit(nick=before.nick)
                 return
         
- #echad==4.4.13
+ #echad==4.4.14
 
 client.run(token)
-
