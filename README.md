@@ -16,9 +16,8 @@ eChad is a versatile Discord bot built using the Discord.py library. It offers a
 
 To use the eChad Discord bot, follow these steps:
 
-1. Invite the bot to your Discord server using the provided invite link.
-2. Set up the required environment variables, such as the bot token.
-3. Run the `echad.py` script to start the bot.
+1. Invite the bot by asking me for an invite link on discord or here.
+2. OR if you want to customize this bot you will have to create your own token and make alterations to the code in order for it to wokr. Contact me for further details
 
 ## Customization
 
