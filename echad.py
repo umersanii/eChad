@@ -49,7 +49,6 @@ async def sendfile(message,lent,filen):
         await message.channel.send(file=discord.File(filen))
         
 async def cleanmsg(message):
-    print(message.content)
     try:
         cmessage = re.sub(r'<([^<>]+)>', '', message.content.lower())
     except:
@@ -127,6 +126,7 @@ async def on_message(message: discord.Message):
         
     mem = message.author.id
     x = random.randint(1,26)
+    odds = random.randint(1,6)
     
 
     ######################################################## Priority 1 ########################################################
@@ -138,13 +138,15 @@ async def on_message(message: discord.Message):
                     if attachment.filename.lower().endswith(target_extensions):
                         if mem in alpha_ids:
                             rizz_level = await rizz_fun(mem, 1)
+                            await message.add_reaction('<:Gigachad:970932041027829770>')
                             await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
                             await message.channel.send(file=discord.File("RizzUp.mp4"))
                             break
                         else:
-                            odds_rizz = random.random.choice(["1,-1,-1,-1,1"])
+                            odds_rizz = random.choice(["1,-1,-1,-1,1"])
                             rizz_level = await rizz_fun(mem, odds_rizz)
                             if odds_rizz == 1:
+                                await message.add_reaction('<:Gigachad:970932041027829770>')
                                 await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
                                 await message.channel.send(file=discord.File("RizzUp.mp4"))
                                 break
@@ -152,7 +154,9 @@ async def on_message(message: discord.Message):
                                 await sendmessage(message, -1, random.choice(rizzminus) + "\nRizz Level = " + str(rizz_level))
                                 await message.channel.send(file=discord.File("RizzDown.mp4"))
                                 break
-    odds = random.randint(1,6)
+        if odds == 3 or odds == 4:
+            await sendmessage(message, 8, '<:Gigachad:970932041027829770>')
+
     if mem in beta_ids:
         if mem == qasim:
             if odds == 3:
@@ -236,11 +240,12 @@ async def on_message(message: discord.Message):
             await message.channel.send(files=[f1,f2])
             
         if 10 <= x <= 20:
-            try:
-                await message.add_reaction(random.choice(animated_emojis))
-            except Exception as e:
-                print(e)
-                pass
+            if not message.channel.id == unspoken_rizz:
+                try:
+                    await message.add_reaction(random.choice(animated_emojis))
+                except Exception as e:
+                    print(e)
+                    pass
         
                     
                   
@@ -484,11 +489,11 @@ async def on_member_update(before, after):
                 channel = client.get_channel(1105938700359188530)
                 await channel.send(embed=embed)
 
-        if before.id == sani and before.nick != after.nick:
-            if c%2 != 0: 
-                await member.edit(nick=before.nick)
-                return
+        # if before.id == sani and before.nick != after.nick:
+        #     if c%2 != 0: 
+        #         await member.edit(nick=before.nick)
+        #         return
         
- #echad==4.4.14
+ #echad==4.4.15
 
 client.run(token)
