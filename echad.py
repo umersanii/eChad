@@ -74,9 +74,16 @@ async def donothing(ctx):
     await channel.send("Does Nothing ")
     await channel.send("gigachad.gif")
 
+@client.tree.command(name="hello")
+async def hello(interaction: discord.Interaction):
+    await interaction.response.send_message(f"Aglaa la {interaction.user.mention}", ephemeral=True)
+
 @client.event
 async def on_ready():
-    
+    try:
+        await client.tree.sync()
+    except Exception as e:
+        print(e)
     print('It is Gold Eagle to Shadow Company, how Copy')
     user = client.get_user(sani)
     await user.send(random.choice(gifs)) 
@@ -299,7 +306,7 @@ async def on_message(message: discord.Message):
     if mem == sani:
         if x in (0,1):
             await message.channel.send("** **", reference = message)
-            await message.channel.send("sani.png")
+            await sendfile(message, -1, "sani.png")
 
         ########################################################sunehra loru #########################################################
     # if mem == aj:
@@ -416,8 +423,10 @@ async def on_message(message: discord.Message):
 @client.event
 async def on_message_delete(message):
     mem = message.author.id
-    
- 
+    if message.attachments:
+        if message.channel.id == unspoken_rizz:
+            return
+        
     if message.id in tracked_messages:
         deleted_message = tracked_messages[message.id]
         username = deleted_message['username']
