@@ -245,12 +245,12 @@ async def on_message(message: discord.Message):
                             pass
             else:
                 pass
-    else:
-        if mem == qasim:
-            f1 = discord.File("qasim.png")
-            f2 = discord.File("qasim1.png")
-            await message.channel.send("** **", reference = message)
-            await message.channel.send(files=[f1,f2])
+    
+        # if mem == qasim:
+        #     f1 = discord.File("qasim.png")
+        #     f2 = discord.File("qasim1.png")
+        #     await message.channel.send("** **", reference = message)
+        #     await message.channel.send(files=[f1,f2])
             
         if 10 <= x <= 20:
             if not message.channel.id == unspoken_rizz:
@@ -287,15 +287,15 @@ async def on_message(message: discord.Message):
         elif s == 7:
             await sendmessage(message, -1, random.choice(bot_gifs))
             return
-    ################################################################################ Konain ##################################################################
+    ################################################################################ CB ##################################################################
     if mem == cb:
-        if x in (1, 3, 7):
+        if x in (2, 3, 7):
             await sendmessage(message, 8, "Ok Owo Shit")    
 
     ################################################################################ Konain ##################################################################
 
     if mem == koni:
-        if x in (0,1):
+        if x in (2,3):
             f1 = discord.File("konain2.png")
             f2 = discord.File("konain3.png")
             await message.channel.send("** **", reference = message)
@@ -304,9 +304,16 @@ async def on_message(message: discord.Message):
     ################################################################################ sani ##################################################################
 
     if mem == sani:
-        if x in (0,1):
-            await message.channel.send("** **", reference = message)
+        if x == 0:
             await sendfile(message, -1, "sani.png")
+            await message.channel.send("https://tenor.com/view/ryan-gosling-blade-runner2049-defeat-sad-disappointed-gif-17817916")
+        elif x == 1:
+            f1 = discord.File("sani1.png")
+            f2 = discord.File("sani2.png")
+            f3 = discord.File("sani3.png")
+            await message.channel.send("** **", reference = message)
+            await message.channel.send(files=[f1,f2,f3])
+            await message.channel.send("https://tenor.com/view/ryan-gosling-blade-runner2049-defeat-sad-disappointed-gif-17817916")
 
         ########################################################sunehra loru #########################################################
     # if mem == aj:
@@ -321,7 +328,7 @@ async def on_message(message: discord.Message):
         # await sendfile(message, 1, "ayan.png")
         ayanlist = ["Wo sab to thek ha pr .........\nHam ne pocha nai tha\n<:Gigachad:970932041027829770>", "Ok Gay"]
         if not message.attachments:
-            if x in (1,3,7):
+            if x in (2,3,7):
                 await sendmessage(message, 10, random.choice(ayanlist))
                 return                            
         else:
@@ -331,10 +338,10 @@ async def on_message(message: discord.Message):
   
     if mem == talha:
         if not message.attachments:
-            if x in (1,3):
+            if x in (2,3):
                 await sendmessage(message, 6, "Ok  :flag_pk:i")
                 return                                 
-            elif x in (2, 4):
+            elif x in (9, 4):
                 await message.add_reaction(':flag_pk:') 
                 return
             elif x in (5,6):
@@ -343,6 +350,12 @@ async def on_message(message: discord.Message):
                 f3 = discord.File("talha2.png")
                 await message.channel.send("** **", reference = message)
                 await message.channel.send(files=[f1,f2,f3])
+                return
+            elif x in (7,8):
+                f1 = discord.File("taruha.png")
+                f2 = discord.File("taruha1.png")
+                await message.channel.send("** **", reference = message)
+                await message.channel.send(files=[f1,f2])
                 return
         else:
             pass
@@ -399,7 +412,7 @@ async def on_message(message: discord.Message):
     user = client.get_user(qasim)
     if message.author == user:
         if not message.attachments:
-            if x in (1,3):
+            if x in (2,3):
                 await sendmessage(message, 12, "Nai kya matlab ha tumhara. <@"+ str(random.choice(qasimchoice))+">. Idhr ayen zara")
                 return
             elif x in (7,9):
@@ -412,7 +425,6 @@ async def on_message(message: discord.Message):
              pass                 
          
     if "<@&1067810754088153094>" in message.content:
-        await message.channel.send('You mentioned me!')
         print('You called?')
         await sendmessage(message, 1, random.choice(u_called))
         return
