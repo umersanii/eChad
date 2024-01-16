@@ -16,6 +16,7 @@ global cond
 cond = False
 
 async def rizz_fun(id, val):
+    
     value = None
 
     with open("unspoken.txt", "r") as file:
@@ -47,7 +48,16 @@ async def sendfile(message,lent,filen):
     if(len(cmessage))>lent:
         await message.channel.send("** **", reference = message)
         await message.channel.send(file=discord.File(filen))
-        
+
+async def sendmsg(message, lent, filen, msg):
+    cmessage = await cleanmsg(message)
+    if(len(cmessage))>lent:
+        if msg == None:
+            await message.channel.send(file=discord.File(filen), reference = message)
+        elif filen == None:
+            await message.channel.send(msg, reference=message)
+        else:
+            await message.channel.send(content = msg, file=discord.File(filen), reference = message)
 async def cleanmsg(message):
     try:
         cmessage = re.sub(r'<([^<>]+)>', '', message.content.lower())
@@ -68,15 +78,11 @@ async def insult(message):
         #     return 0
 
 
-@client.command()
-async def donothing(ctx):
-    channel = client.get_channel(790490721450459179)
-    await channel.send("Does Nothing ")
-    await channel.send("gigachad.gif")
 
-@client.tree.command(name="hello")
-async def hello(interaction: discord.Interaction):
-    await interaction.response.send_message(f"Aglaa la {interaction.user.mention}", ephemeral=True)
+
+@client.tree.command(name="do_nothing")
+async def Do_Nothing(interaction: discord.Interaction):
+    await interaction.response.send_message("*Does Nothing*")
 
 @client.event
 async def on_ready():
@@ -95,6 +101,9 @@ async def on_ready():
 tracked_messages = {}
 @client.event
 async def on_message(message: discord.Message):
+    if message.guild.id== 790490721450459177:
+        return
+    
     if message.author == client.user:
         tracked_messages[message.id] = {
             'content': message.content,
@@ -132,11 +141,12 @@ async def on_message(message: discord.Message):
         return
         
     mem = message.author.id
-    x = random.randint(1,26)
+    x = random.randint(0,26)
     odds = random.randint(1,6)
     
 
     ######################################################## Priority 1 ########################################################
+    
     if mem not in alpha_ids:
         if (message.reference and message.reference.resolved and message.reference.resolved.author == client.user) or f'<@{eghost}>' in message.content:
             if await insult(message) == True:
@@ -180,6 +190,8 @@ async def on_message(message: discord.Message):
             rizzres = ["https://cdn.discordapp.com/emojis/1118471926860496938.gif?size=128&quality=lossless", "<:Gigachad:970932041027829770>"]
             await sendmessage(message, 8, random.choice(rizzres))
             return
+        else:
+            return
     if message.channel.id == 1115763264891138118:
         if mem == ayan:
             await message.delete()
@@ -188,58 +200,83 @@ async def on_message(message: discord.Message):
 
             
     ######################################################## All ######################################
-    if any(string in message.content for string in bye):
-        print('Good Bye')
-        await sendmessage(message, 1, "Allah hi Hafiz ha tumhara")
-        return
-    elif any(string in message.content for string in sensitive_words):
-        print('O Allah the Almighty')
-        return
-        
-    if x == 21:
-        await sendfile(message, 18, random.choice(honestreac)+".mp4")
-        await sendmessage(message, 18, "My honest reaction to that information")
+    if 10 <= x <= 25:
+            if not message.channel.id == unspoken_rizz or message.channel.id == randi_rano:
+                try:
+                    await message.add_reaction(random.choice(animated_emojis))
+                except Exception as e:
+                    print(e)
+                    pass
 
-    elif x in (23,24,25,26):
-        try:
-            await sendmessage(message, 1, random.choice(animated_emojis))
+    if message.channel.id not in prohibited_channels:
+        if any(string in message.content for string in bye):
+            print('Good Bye')
+            await sendmessage(message, 1, "Allah hi Hafiz ha tumhara")
             return
-        except Exception as e:
-            print(e)
-            pass
+        elif any(string in message.content for string in sensitive_words):
+            print('O Allah the Almighty')
+            return
+            
+        if x == 21:
+            await sendfile(message, 18, random.choice(honestreac)+".mp4")
+            await sendmessage(message, 18, "My honest reaction to that information")
+            return
 
-    if not message.attachments:
+        elif x in (23,24,25,26):
+            try:
+                await sendmessage(message, 10, random.choice(animated_emojis))
+                return
+            except Exception as e:
+                print(e)
+                pass
+
+    if not message.attachments or (message.channel.id not in prohibited_channels):
 
         if mem not in alpha_ids:
         
             if message.reference and message.reference.resolved and message.reference.resolved.author == client.user:
                 await sendmessage(message, 1, random.choice(bother))
+                return
             
             if not message.attachments:
                 if x==11 or x==19:
                     await sendfile(message, 12, random.choice(betas)+".mp4")
+                    return
+
                 elif x == 13 or x == 15:
                     await sendmessage(message, 10, random.choice(responses_text))
+                    return
+
                 elif x==17:
                     await sendfile(message, 25, "thisu.gif")
                     await sendmessage(message, 25, "This you?")
+                    return
+
 
             else:
                 await sendfile(message, 8, random.choice(response_file)+".mp4")
+                return
+
     
         else:   
             if mem in alpha_ids or mem == talha:         
                 if not message.attachments:
                     if x==12:
                         await sendfile(message, 15, random.choice(alphas) + ".mp4")
+                        return
+
                     elif x==14:
                         await sendmessage(message, 12, random.choice(sigma))
+                        return
+
                     # elif x == 16:
                     #     await sendfile(message, 11, "sigma.mp4")
                     #     await sendmessage(message, 11, "This You?")
                     elif x==18:
                         try:
                             await message.add_reaction('<:Gigachad:970932041027829770>')
+                            return
+
                         except Exception as e:
                             print(e)
                             pass
@@ -252,13 +289,7 @@ async def on_message(message: discord.Message):
         #     await message.channel.send("** **", reference = message)
         #     await message.channel.send(files=[f1,f2])
             
-        if 10 <= x <= 20:
-            if not message.channel.id == unspoken_rizz:
-                try:
-                    await message.add_reaction(random.choice(animated_emojis))
-                except Exception as e:
-                    print(e)
-                    pass
+       
         
                     
                   
@@ -289,9 +320,12 @@ async def on_message(message: discord.Message):
             return
     ################################################################################ CB ##################################################################
     if mem == cb:
-        if x in (2, 3, 7):
-            await sendmessage(message, 8, "Ok Owo Shit")    
-
+        if x in (2, 3):
+            await sendmessage(message, 8, "Ok Owo Shit")
+            return
+        elif x in (7 ,8):
+            await sendmessage(message, 8, "Okie Donkie")
+            return
     ################################################################################ Konain ##################################################################
 
     if mem == koni:
@@ -351,12 +385,23 @@ async def on_message(message: discord.Message):
                 await message.channel.send("** **", reference = message)
                 await message.channel.send(files=[f1,f2,f3])
                 return
-            elif x in (7,8):
+            elif x == 7:
                 f1 = discord.File("taruha.png")
                 f2 = discord.File("taruha1.png")
                 await message.channel.send("** **", reference = message)
                 await message.channel.send(files=[f1,f2])
                 return
+            elif x == 8:
+                f1 = discord.File("taruha2.png")
+                f2 = discord.File("taruha3.png")
+                await message.channel.send("** **", reference = message)
+                await message.channel.send(files=[f1,f2])
+                return
+            elif x in (9,10):
+                try:
+                    await sendfile(message, -1, "talha_bhai.mp3")
+                except Exception as e:
+                    print(e)
         else:
             pass
 ######################################################## Aon ######################################
@@ -434,6 +479,9 @@ async def on_message(message: discord.Message):
 
 @client.event
 async def on_message_delete(message):
+    if message.guild.id == 790490721450459177:
+        return
+    
     mem = message.author.id
     if message.attachments:
         if message.channel.id == unspoken_rizz:
@@ -452,7 +500,7 @@ async def on_message_delete(message):
         await channel.send(content)
         await channel.send(random.choice(msgdelbot))
         
-    if mem not in alpha_ids and not message.author.bot:
+    if mem not in sani or not message.author.bot:
         if message.content != "":
             try:
                 await message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
@@ -476,6 +524,9 @@ async def on_message_delete(message):
 
 @client.event
 async def on_message_edit(b4message,afmessage):
+        if b4message.guild.id == 790490721450459177:
+         return
+    
         mem = b4message.author.id
         if b4message.attachments:
             return
@@ -486,14 +537,19 @@ async def on_message_edit(b4message,afmessage):
         elif ".gif" in b4message.content.lower():
             return
         else:         
-            if mem not in alpha_ids and not b4message.author.bot:
+            if mem not in sani or not b4message.author.bot:
                 if b4message.content != "":
                     await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-                    embed2 = discord.Embed(
-                    title=b4message.author.nick + "'s Edited Message",
-                    description= "",
-                    color=discord.Color.red())
-                    
+                    try:
+                        embed2 = discord.Embed(
+                        title=b4message.author.nick + "'s Edited Message",
+                        description= "",
+                        color=discord.Color.red())
+                    except:
+                        embed2 = discord.Embed(
+                        title='<@'+str(mem)+'>' + "'s Edited Message",
+                        description= "",
+                        color=discord.Color.red())
                     embed2.add_field(name='Original Message', value=b4message.content, inline=False)
                     embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
 
@@ -502,7 +558,9 @@ async def on_message_edit(b4message,afmessage):
 
 @client.event
 async def on_member_join(member):
-
+    if member.guild == 790490721450459177:
+        return
+    
 
     channel = member.guild.system_channel #uses the default channel from server
     img = "agya"+str(random.randint(1,2))+".jpg"
@@ -520,6 +578,9 @@ async def on_member_remove(member):
 c=0
 @client.event
 async def on_member_update(before, after):
+        if before.guild.id == 790490721450459177:
+            return
+    
         global c
         if before.nick != after.nick:
             if after.id == sani:
@@ -548,6 +609,6 @@ async def on_member_update(before, after):
         #         await member.edit(nick=before.nick)
         #         return
         
- #echad==4.4.16
+ #echad==4.4.18
 
 client.run(token)
