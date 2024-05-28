@@ -6,6 +6,7 @@ import re
 from data import *
 tracemalloc.start()
 import asyncio
+import os
 
 activity = discord.Activity(type=discord.ActivityType.watching, name="the chaos unfold, asserting control.")
 
@@ -613,5 +614,7 @@ async def on_member_update(before, after):
         #         return
         
  #echad==4.4.18
-
+token = os.getenv('token')
+if token is None:
+    raise ValueError("No token found! Please set the TOKEN environment variable.")
 client.run(token)

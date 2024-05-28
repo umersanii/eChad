@@ -13,11 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the working directory contents into the container at /usr/src/app
 COPY . .
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
 
-# Define environment variable
-ENV NAME token
+# Define environment variable (add any additional environment variables if needed)
+ENV TOKEN=$TOKEN
 
 # Run bot.py when the container launches
-CMD ["python", "eChad.py"]
+CMD ["python", "bot.py"]
