@@ -95,9 +95,9 @@ async def on_ready():
     await user.send(random.choice(gifs)) 
     await user.send(random.choice(copy))
     
-#   channel = client.get_channel(dildya)
-#   await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
-#   await channel.send("<:Gigachad:970932041027829770>")
+    channel = client.get_channel(dildya)
+    await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
+    await channel.send("<:Gigachad:970932041027829770>")
 tracked_messages = {}
 @client.event
 async def on_message(message: discord.Message):
@@ -349,13 +349,13 @@ async def on_message(message: discord.Message):
             await message.channel.send(files=[f1,f2,f3])
             await message.channel.send("https://tenor.com/view/ryan-gosling-blade-runner2049-defeat-sad-disappointed-gif-17817916")
 
-        ########################################################sunehra loru #########################################################
-    # if mem == aj:
-    #     if any(string in message.content.lower() for string in insults):
-    #         print('-------->Insult Detected lory')
-    #         await sendmessage (message, 1, random.choice(ajr))                                
-    #     else:
-    #         pass
+        ######################################################## Fasii #########################################################
+    if mem == aj:
+        if not message.attachments:
+            if x in (2,3,7):
+                await sendmessage (message, 10, random.choice(ayanlist))                                
+        else:
+            pass
     ################################################################################ Ayan ##################################################################
   
     if message.author.id == ayan:
@@ -365,6 +365,9 @@ async def on_message(message: discord.Message):
             if x in (2,3,7):
                 await sendmessage(message, 10, random.choice(ayanlist))
                 return                            
+            elif x==9:
+                    await sendmessage(message, 2, "Ok Gay")
+                    return
         else:
             pass
         
