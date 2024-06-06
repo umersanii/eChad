@@ -6,7 +6,6 @@ import re
 from data import *
 tracemalloc.start()
 import asyncio
-import os
 
 activity = discord.Activity(type=discord.ActivityType.watching, name="the chaos unfold, asserting control.")
 
@@ -96,9 +95,9 @@ async def on_ready():
     await user.send(random.choice(gifs)) 
     await user.send(random.choice(copy))
     
-    channel = client.get_channel(dildya)
-    await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
-    await channel.send("<:Gigachad:970932041027829770>")
+#     channel = client.get_channel(dildya)
+#     await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
+#     await channel.send("<:Gigachad:970932041027829770>")
 tracked_messages = {}
 @client.event
 async def on_message(message: discord.Message):
@@ -614,7 +613,5 @@ async def on_member_update(before, after):
         #         return
         
  #echad==4.4.18
-token = os.getenv('token')
-if token is None:
-    raise ValueError("No token found! Please set the TOKEN environment variable.")
+
 client.run(token)
