@@ -5,5 +5,4 @@ altgraph
 appdirs
 async-timeout
 attrs
-discord
 discord.py
