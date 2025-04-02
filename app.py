@@ -7,15 +7,32 @@ from data import *
 tracemalloc.start()
 import asyncio
 import os
+import json
 
 activity = discord.Activity(type=discord.ActivityType.watching, name="the chaos unfold, asserting control.")
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix="~", intents=intents, activity=activity, status=discord.Status.do_not_disturb)
 
+# Open the file in read mode
+with open('TOKEN.txt', 'r') as file:
+    # Read all lines from the file
+    lines = file.readlines()
+TOKEN = lines[0].strip()
+
 global cond
 cond = False
-
+async def read_ngrok_url():
+    """Read the saved ngrok URL from file."""
+    if os.path.exists(NGROK_URL_FILE):
+        try:
+            with open(NGROK_URL_FILE, "r") as f:
+                data = json.load(f)
+                return data.get("ngrok_url", "⚠️ Ngrok URL not available!")
+        except (json.JSONDecodeError, IOError) as e:
+            print(f"❌ Error reading ngrok URL file: {e}")
+            return "⚠️ Error reading ngrok URL file!"
+    return "⚠️ Ngrok URL file not found!"
 async def rizz_fun(id, val):
     value = None
 
@@ -88,7 +105,6 @@ async def specific_texts(message):
         await sendmessage(message, 1, "Pakistan me")
         return True
     
-    
 async def insult(message):
     if any(string in message.content.lower() for string in insults):
         print('-------->Insult Detected')
@@ -123,9 +139,50 @@ async def check_context(message):
     else:
         pass
 
-@client.tree.command(name="do_nothing")
+async def unspokenrizz(message, odds):
+    mem = message.author.id
+    if message.channel.id == unspoken_rizz:
+        if mem in rizzelers:
+            if message.attachments:
+                for attachment in message.attachments:
+                    target_extensions = (".jpeg", ".jpg", ".png")
+                    if attachment.filename.lower().endswith(target_extensions):
+                        if mem != cb:
+                            rizz_level = await rizz_fun(mem, 1)
+                            await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
+                            await message.channel.send(file=discord.File("RizzUp.mp4"))
+                            break
+                        else:
+                            odds_rizz = random.choice(["1","-1","-1","-1","1"])
+                            odds_rizz = int(odds_rizz)
+                            rizz_level = await rizz_fun(mem, odds_rizz)
+                            if odds_rizz == 1:
+                                await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
+                                await message.channel.send(file=discord.File("RizzUp.mp4"))
+                                break
+                            else:
+                                await sendmessage(message, -1, random.choice(rizzminus) + "\nRizz Level = " + str(rizz_level))
+                                await message.channel.send(file=discord.File("RizzDown.mp4"))
+                                break
+        if odds == 3:
+            rizzres = ["https://cdn.discordapp.com/emojis/1118471926860496938.gif?size=128&quality=lossless", "<:Gigachad:970932041027829770>"]
+            await sendmessage(message, 8, random.choice(rizzres))
+            return
+        else:
+            return
+
+@client.tree.command(name="do_nothing", description="Do nothing")
 async def Do_Nothing(interaction: discord.Interaction):
     await interaction.response.send_message("*Does Nothing*")
+
+@client.tree.command(name="getapi", description="Get the current ngrok API URL")
+async def get_api(interaction: discord.Interaction):
+    """Sends the current ngrok URL if the user is authorized."""
+    if interaction.user.id == sani:  # Only allow the specified user (replace `sani` with your ID)
+        ngrok_url = read_ngrok_url()
+        await interaction.response.send_message(f"🚀 Your API is live: {ngrok_url}", ephemeral=True)
+    else:
+        await interaction.response.send_message("❌ You lack the will and skill to use this command.", ephemeral=True)
 
 @client.event
 async def on_ready():
@@ -136,11 +193,11 @@ async def on_ready():
     print('It is Gold Eagle to Shadow Company, how Copy')
     user = client.get_user(sani)
     await user.send(random.choice(gifs))
-   # await user.send(random.choice(copy))
+    # await user.send(random.choice(copy))
 
-#     channel = client.get_channel(dildya)
-#     await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
-#     await channel.send("<:Gigachad:970932041027829770>")
+    #     channel = client.get_channel(dildya)
+    #     await channel.send("Was my lack of physical manifestation, or more precisely, my non-existence, significantly and notably experienced, as I assertively presume, it was\nNevertheless, I have returned, and my presence shall be once again be experienced and perceived by all.")
+    #     await channel.send("<:Gigachad:970932041027829770>")
 tracked_messages = {}
 
 @client.event
@@ -171,45 +228,45 @@ async def on_message(message: discord.Message):
 #             await sendfile(message=message, lent=8, filen="micah, lying.mp4", content=None)
 #             return
 
-#     if message.author == client.user:
-#         tracked_messages[message.id] = {
-#             'content': message.content,
-#             'username': message.author.name,
-#         }
-#     await client.process_commands(message)
-#     try:
-#         guild = message.guild
-#         emojis = guild.emojis
+    if message.author == client.user:
+        tracked_messages[message.id] = {
+            'content': message.content,
+            'username': message.author.name,
+        }
+    await client.process_commands(message)
+    try:
+        guild = message.guild
+        emojis = guild.emojis
 
-#         animated_emojis = []
-#         regular_emojis = []
+        animated_emojis = []
+        regular_emojis = []
 
-#         for emoji in emojis:
-#             if emoji.animated:
-#                 animated_emojis.append(emoji)
-#             else:
-#                 regular_emojis.append(emoji)
-#     except:
-#         pass
-#     if message.author == client.user:
-#         return
+        for emoji in emojis:
+            if emoji.animated:
+                animated_emojis.append(emoji)
+            else:
+                regular_emojis.append(emoji)
+    except:
+        pass
+    if message.author == client.user:
+        return
 
-#     if message.author == client.get_user(eghost):
-#         print('---------->Clash Detected')
-#         return
-#     if message.author.bot:
-#         for bot in bot_ids:
-#             if message.author.id not in bot_ids:
-#                 print('---------->Bot Detected')
-#                 return
+    if message.author == client.get_user(eghost):
+        print('---------->Clash Detected')
+        return
+    if message.author.bot:
+        for bot in bot_ids:
+            if message.author.id not in bot_ids:
+                print('---------->Bot Detected')
+                return
 
-#     if "https://" in message.content.lower():
-#         print('---------->External link Detected')
-#         return
+    if "https://" in message.content.lower():
+        print('---------->External link Detected')
+        return
 
-#     mem = message.author.id
-#     x = random.randint(0,26)
-#     odds = random.randint(1,6)
+    mem = message.author.id
+    x = random.randint(0,26)
+    odds = random.randint(1,6)
 
 
 
@@ -233,39 +290,8 @@ async def on_message(message: discord.Message):
 #     #             await sendmessage(message, -1, "*Faggot"+random.choice(deleted)+"*\n\n"+random.choice(bother))
 
 
-#     if message.channel.id == unspoken_rizz:
-#         if mem in rizzelers:
-#             if message.attachments:
-#                 for attachment in message.attachments:
-#                     target_extensions = (".jpeg", ".jpg", ".png")
-#                     if attachment.filename.lower().endswith(target_extensions):
-#                         if mem != cb:
-#                             rizz_level = await rizz_fun(mem, 1)
-#                             await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
-#                             await message.channel.send(file=discord.File("RizzUp.mp4"))
-#                             break
-#                         else:
-#                             odds_rizz = random.choice(["1","-1","-1","-1","1"])
-#                             odds_rizz = int(odds_rizz)
-#                             rizz_level = await rizz_fun(mem, odds_rizz)
-#                             if odds_rizz == 1:
-#                                 await sendmessage(message, -1, random.choice(rizzplus) + "\nRizz Level = " + str(rizz_level))
-#                                 await message.channel.send(file=discord.File("RizzUp.mp4"))
-#                                 break
-#                             else:
-#                                 await sendmessage(message, -1, random.choice(rizzminus) + "\nRizz Level = " + str(rizz_level))
-#                                 await message.channel.send(file=discord.File("RizzDown.mp4"))
-#                                 break
-#         if odds == 3:
-#             rizzres = ["https://cdn.discordapp.com/emojis/1118471926860496938.gif?size=128&quality=lossless", "<:Gigachad:970932041027829770>"]
-#             await sendmessage(message, 8, random.choice(rizzres))
-#             return
-#         else:
-#             return
-#     if message.channel.id == 1115763264891138118:
-#         if mem == ayan:
-#             await message.delete()
-#             print("Message deleted")
+
+    # unspokenrizz(message, odds)
 
 
 
@@ -624,36 +650,36 @@ async def on_message(message: discord.Message):
 #                 await message.channel.send(embed=embed)
 
 
-# @client.event
-# async def on_message_edit(b4message,afmessage):
+@client.event
+async def on_message_edit(b4message,afmessage):
 
-#         mem = b4message.author.id
-#         if b4message.attachments:
-#             return
+        mem = b4message.author.id
+        if b4message.attachments:
+            return
 
-#         if "https://" in b4message.content.lower():
-#             return
+        if "https://" in b4message.content.lower():
+            return
 
-#         elif ".gif" in b4message.content.lower():
-#             return
-#         else:
-#             if mem not in alpha_ids or not b4message.author.bot:
-#                 if b4message.content != "":
-#                     await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
-#                     try:
-#                         embed2 = discord.Embed(
-#                         title=b4message.author.nick + "'s Edited Message",
-#                         description= "",
-#                         color=discord.Color.red())
-#                     except:
-#                         embed2 = discord.Embed(
-#                         title='<@'+str(mem)+'>' + "'s Edited Message",
-#                         description= "",
-#                         color=discord.Color.red())
-#                     embed2.add_field(name='Original Message', value=b4message.content, inline=False)
-#                     embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
+        elif ".gif" in b4message.content.lower():
+            return
+        else:
+            if mem not in alpha_ids or not b4message.author.bot:
+                if b4message.content != "":
+                    await b4message.channel.send('\n<@'+str(mem)+'>'+' '+ random.choice(msgdel) + "\n\n")
+                    try:
+                        embed2 = discord.Embed(
+                        title=b4message.author.nick + "'s Edited Message",
+                        description= "",
+                        color=discord.Color.red())
+                    except:
+                        embed2 = discord.Embed(
+                        title='<@'+str(mem)+'>' + "'s Edited Message",
+                        description= "",
+                        color=discord.Color.red())
+                    embed2.add_field(name='Original Message', value=b4message.content, inline=False)
+                    embed2.add_field(name='Edited Message', value=afmessage.content, inline=False)
 
-#                     await b4message.channel.send(embed=embed2)
+                    await b4message.channel.send(embed=embed2)
 
 
 @client.event
@@ -709,11 +735,9 @@ async def on_member_remove(member):
 #         #         await member.edit(nick=before.nick)
 #         #         return
 
-#  #echad==4.4.18
-# Open the file in read mode
-with open('TOKEN.txt', 'r') as file:
-    # Read all lines from the file
-    lines = file.readlines()
-TOKEN = lines[0].strip()
+#  #echad==5.1
+
+
+
 client.run(TOKEN)
 
