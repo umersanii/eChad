@@ -2,3 +2,4 @@ data.py
 *.pyc
 TOKEN.txt
 eChad.rar
+*.log

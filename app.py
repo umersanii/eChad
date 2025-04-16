@@ -12,10 +12,10 @@ import json
 activity = discord.Activity(type=discord.ActivityType.watching, name="the chaos unfold, asserting control.")
 
 intents = discord.Intents.all()
-client = commands.Bot(command_prefix="~", intents=intents, activity=activity, status=discord.Status.do_not_disturb)
+client = commands.Bot(command_prefix="/", intents=intents, activity=activity, status=discord.Status.do_not_disturb)
 
 # Open the file in read mode
-with open('TOKEN.txt', 'r') as file:
+with open('/home/umersani/eChad/TOKEN.txt', 'r') as file:
     # Read all lines from the file
     lines = file.readlines()
 TOKEN = lines[0].strip()
@@ -179,10 +179,11 @@ async def Do_Nothing(interaction: discord.Interaction):
 async def get_api(interaction: discord.Interaction):
     """Sends the current ngrok URL if the user is authorized."""
     if interaction.user.id == sani:  # Only allow the specified user (replace `sani` with your ID)
-        ngrok_url = read_ngrok_url()
+        ngrok_url = await read_ngrok_url()
         await interaction.response.send_message(f"🚀 Your API is live: {ngrok_url}", ephemeral=True)
     else:
         await interaction.response.send_message("❌ You lack the will and skill to use this command.", ephemeral=True)
+
 
 @client.event
 async def on_ready():
@@ -204,7 +205,9 @@ tracked_messages = {}
 async def on_message(message: discord.Message):
 
     await out_of_context(message)
-
+    if message.content == "!getapi" and message.author.id == sani:
+            # Manually invoke the function when a user sends "!getapi"
+            await get_api(message)
     # context_msg = await check_context(message)
     # flag = True
     # if context_msg != None:
@@ -701,43 +704,4 @@ async def on_member_remove(member):
     await channel.send(f'{member.mention} nahi rhe '+moji)
     await channel.send(file=discord.File("Adil.gif"))
 
-# c=0
-# @client.event
-# async def on_member_update(before, after):
-#         if before.guild.id == 790490721450459177:
-#             return
-
-#         # global c
-#         # if before.nick != after.nick:
-#         #     if after.id == sani:
-#         #         c=c+1
-#         #     member = after
-#         #     new_nickname = after.nick
-#         #     old_nick = before.nick
-#         #     if old_nick == None:
-#         #         desc = f"{member.name}'s name was changed to {new_nickname}!"
-#         #     else:
-#         #         desc = f"{member.name}'s name was changed from {before.nick} nickname to {new_nickname}!"
-#         #     embed = discord.Embed(
-#         #             title="Updated NickName!",
-#         #             description= desc,
-#         #             color=discord.Color.dark_blue()
-#         #             )
-#         #     try:
-#         #         channel = client.get_channel(1115766896810278993)
-#         #         await channel.send(embed=embed)
-#         #     except:
-#         #         channel = client.get_channel(1105938700359188530)
-#         #         await channel.send(embed=embed)
-
-#         # if before.id == sani and before.nick != after.nick:
-#         #     if c%2 != 0:
-#         #         await member.edit(nick=before.nick)
-#         #         return
-
-#  #echad==5.1
-
-
-
 client.run(TOKEN)
-
